@@ -4,7 +4,7 @@
 
   <!-- Dashboard nav -->
   <li class="nav-item">
-    <a class="nav-link " href="index.html">
+    <a class="nav-link " href="{{route('admin.dashboad.index')}}">
       <i class="bi bi-grid"></i>
       <span>Trang chủ</span>
     </a>
@@ -17,17 +17,17 @@
     </a>
     <ul id="owner-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="owner.html">
+        <a href="{{route('admin.owner.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
       <li>
-        <a href="owner-upload-excel.html">
+        <a href="{{route('admin.owner.index')}}">
           <i class="bi bi-circle"></i><span>Tải file Excel</span>
         </a>
       </li>
       <li>
-        <a href="owner-add.html">
+        <a href="{{route('admin.owner.add')}}">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
@@ -41,17 +41,17 @@
     </a>
     <ul id="sale-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="sale.html">
+        <a href="{{route('admin.owner.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
-        <a href="sale.html">
+        <a href="{{route('admin.owner.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
-        <a href="sale.html">
+        <a href="{{route('admin.owner.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>
@@ -65,17 +65,17 @@
     </a>
     <ul id="rent-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="rent.html">
+        <a href="{{route('admin.sale.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
-        <a href="rent.html">
+        <a href="{{route('admin.sale.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
-        <a href="sale.html">
+        <a href="{{route('admin.sale.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>
@@ -89,12 +89,12 @@
     </a>
     <ul id="notification-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="notification.html">
+        <a href="{{route('admin.notification.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
       <li>
-        <a href="notification-add.html">
+        <a href="{{route('admin.notification.add')}}">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
@@ -104,7 +104,7 @@
 
   <!-- Contract nav -->
   <li class="nav-item">
-    <a class="nav-link " href="contract.html">
+    <a class="nav-link " href="{{route('admin.contract.index')}}">
       <i class="bi bi-journal-text"></i>
       <span>Hợp đồng</span>
     </a>
@@ -117,17 +117,17 @@
     </a>
     <ul id="user-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="user.html">
+        <a href="{{route('admin.user.index')}}">
           <i class="bi bi-circle"></i><span>Danh sách</span>
         </a>
       </li>
       <li>
-        <a href="user-add.html">
+        <a href="{{route('admin.user.add')}}">
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
       <li>
-        <a href="authorization.html">
+        <a href="{{route('admin.user.index')}}">
           <i class="bi bi-circle"></i><span>Phân quyền</span>
         </a>
       </li>

@@ -174,14 +174,12 @@
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            
             <li>
               <a class="dropdown-item d-flex align-items-center" href="<?php echo e(route('logout')); ?>">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Đăng Xuất</span>
               </a>
             </li>
-
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
