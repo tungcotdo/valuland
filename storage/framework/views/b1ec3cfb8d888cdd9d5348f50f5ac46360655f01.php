@@ -26,6 +26,9 @@
 
   <!-- Template Main CSS File -->
   <link href="<?php echo e(asset('admin/css/style.css')); ?>" rel="stylesheet">
+
+  <!-- Form CSS File -->
+  <link href="<?php echo e(asset('form/modal.css')); ?>" rel="stylesheet">
 </head>
 
 <body>
@@ -170,7 +173,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Phạm Thăng</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo e(Auth::user()->email); ?></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -193,10 +196,35 @@
   <!-- End Sidebar-->
 
   <!-- ======= Main ======= -->
-  <?php echo $__env->yieldContent('admin.main'); ?>
+  <main id="main" class="main">
+    <?php if(Session::has('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <?php echo e(Session::get('error')); ?>
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php elseif(Session::has('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <?php echo e(Session::get('success')); ?>
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+    
+    <?php echo $__env->yieldContent('admin.main'); ?>
+  </main>
   <!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Modal loading page -->
+  <div class="modal" id="modal__loading">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+          <div class="loader"></div>
+          <div class="loading__title">Đang xử lý ...</div>
+      </div>
+  </div>
 
   <!-- Vendor JS Files -->
   <script src="<?php echo e(asset('admin/vendor/apexcharts/apexcharts.min.js')); ?>"></script>
@@ -211,6 +239,10 @@
   <!-- Template Main JS File -->
   <script src="<?php echo e(asset('admin/js/main.js')); ?>"></script>
 
+  <!-- Form JS File -->
+  <script src="<?php echo e(asset('form/function.js')); ?>"></script>
+
+  <?php echo $__env->yieldContent('admin.script'); ?>
 </body>
 
 </html><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

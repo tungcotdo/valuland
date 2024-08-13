@@ -26,6 +26,9 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
+
+  <!-- Form CSS File -->
+  <link href="{{asset('form/modal.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -170,7 +173,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Phạm Thăng</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->email}}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -193,10 +196,33 @@
   <!-- End Sidebar-->
 
   <!-- ======= Main ======= -->
-  @yield('admin.main')
+  <main id="main" class="main">
+    @if (Session::has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ Session::get('error') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif (Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ Session::get('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
+    @yield('admin.main')
+  </main>
   <!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Modal loading page -->
+  <div class="modal" id="modal__loading">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+          <div class="loader"></div>
+          <div class="loading__title">Đang xử lý ...</div>
+      </div>
+  </div>
 
   <!-- Vendor JS Files -->
   <script src="{{asset('admin/vendor/apexcharts/apexcharts.min.js')}}"></script>
@@ -211,6 +237,10 @@
   <!-- Template Main JS File -->
   <script src="{{asset('admin/js/main.js')}}"></script>
 
+  <!-- Form JS File -->
+  <script src="{{asset('form/function.js')}}"></script>
+
+  @yield('admin.script')
 </body>
 
 </html>
