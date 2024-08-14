@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::post('upload-excel', ['as' => 'admin.owner.upload-excel', 'uses' => 'Admin\OwnerController@uploadExcel']);
         Route::get('edit/{owner_id}', ['as' => 'admin.owner.edit', 'uses' => 'Admin\OwnerController@edit']);
         Route::post('update/{owner_id}', ['as' => 'admin.owner.update', 'uses' => 'Admin\OwnerController@update']);
+        Route::get('update-demand/{owner_id}/{owner_demand}', ['as' => 'admin.owner.update-demand', 'uses' => 'Admin\OwnerController@updateDemand']);
         Route::get('delete/{owner_id}', ['as' => 'admin.owner.delete', 'uses' => 'Admin\OwnerController@delete']);
         Route::get('truncate', ['as' => 'admin.owner.truncate', 'uses' => 'Admin\OwnerController@truncate']);
     });

@@ -39,7 +39,7 @@ class OwnerController extends Controller
     public function add(Request $request){
         return view('admin.owner.add');
     }
-    
+
     public function store(Request $request){
         if( empty( $request['owner_demand'] ) ){
             DB::table('owner')->insert([
@@ -168,9 +168,43 @@ class OwnerController extends Controller
 
         return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng kiểm tra lại!');
     }
+
+    public function updateDemand(Request $request){
+
+        $owner = (array)DB::table('owner')->where('owner_id', $request->owner_id)->first();
+
+        if( $request['owner_demand'] == 1 ){
+            DB::table('sale')->insert([
+                'sale_owner_name'  => $owner['owner_name'],
+                'sale_owner_phone' => $owner['owner_phone'],
+                'sale_owner_email' => $owner['owner_email'],
+                'sale_owner_code'  => $owner['owner_code'],
+                'sale_created_by'  => Auth::user()->email,
+                'sale_updated_by'  => Auth::user()->email,
+                'sale_created_at'  => Carbon::now(),
+                'sale_updated_at'  => Carbon::now()
+            ]);
+            DB::table('owner')->where('owner_id', $request->owner_id)->delete();
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách bán thành công!');
+        }elseif( $request['owner_demand'] == 2 ){
+            DB::table('rent')->insert([
+                'rent_owner_name'  => $owner['owner_name'],
+                'rent_owner_phone' => $owner['owner_phone'],
+                'rent_owner_email' => $owner['owner_email'],
+                'rent_owner_code'  => $owner['owner_code'],
+                'rent_created_by'  => Auth::user()->email,
+                'rent_updated_by'  => Auth::user()->email,
+                'rent_created_at'  => Carbon::now(),
+                'rent_updated_at'  => Carbon::now()
+            ]);
+            DB::table('owner')->where('owner_id', $request->owner_id)->delete();
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
+        }
+    }
+
     public function delete(Request $request){
-        DB::table('owner')->delete($request->owner_id);
-        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
+        DB::table('owner')->where('owner_id',$request->owner_id)->delete();
+        return redirect()->route('admin.owner.index')->with('success', 'Xoá dữ liệu thành công!'); 
     }
 
     public function truncate(Request $request){

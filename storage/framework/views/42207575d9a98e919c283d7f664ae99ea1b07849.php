@@ -94,15 +94,15 @@
                             <td><?php echo e($value->owner_name); ?></td>
                             <td><?php echo e($value->owner_phone); ?></td>
                             <td>
-                                <select class="form-control form-control-sm owner-demand-slb" id="demand-<?php echo e($value->owner_id); ?>">
+                                <select class="form-control form-control-sm owner-demand-slb">
                                     <option value="0">Không có</option>
-                                    <option value="1">Bán</option>
-                                    <option value="2">Thuê</option>
+                                    <option value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 1])); ?>" >Bán</option>
+                                    <option value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 2])); ?>">Thuê</option>
                                 </select>
                             </td>
                             <td>
                                 <a href="<?php echo e(route('admin.owner.edit', $value->owner_id)); ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
-                                <a href="<?php echo e(route('admin.owner.delete', $value->owner_id)); ?>" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
+                                <a href="<?php echo e(route('admin.owner.delete', $value->owner_id)); ?>" onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -120,5 +120,19 @@
 
   </div>
 </section>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('admin.script'); ?>
+  <script>
+      let ownerDemands = document.querySelectorAll('.owner-demand-slb');
+        ownerDemands.forEach( slb => {
+            if( slb.value !== 0 ){
+                slb.addEventListener('change', () => {
+                    document.getElementById("modal__loading").style.display = "block";
+                    window.location.href = slb.value
+                }) 
+            }   
+        })
+  </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/owner/index.blade.php ENDPATH**/ ?>

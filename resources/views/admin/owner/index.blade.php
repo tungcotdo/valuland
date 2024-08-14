@@ -94,15 +94,15 @@
                             <td>{{ $value->owner_name }}</td>
                             <td>{{ $value->owner_phone }}</td>
                             <td>
-                                <select class="form-control form-control-sm owner-demand-slb" id="demand-{{ $value->owner_id }}">
+                                <select class="form-control form-control-sm owner-demand-slb">
                                     <option value="0">Không có</option>
-                                    <option value="1">Bán</option>
-                                    <option value="2">Thuê</option>
+                                    <option value="{{route('admin.owner.update-demand', [$value->owner_id, 1])}}" >Bán</option>
+                                    <option value="{{route('admin.owner.update-demand', [$value->owner_id, 2])}}">Thuê</option>
                                 </select>
                             </td>
                             <td>
                                 <a href="{{ route('admin.owner.edit', $value->owner_id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
-                                <a href="{{ route('admin.owner.delete', $value->owner_id) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
+                                <a href="{{ route('admin.owner.delete', $value->owner_id) }}" onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -120,4 +120,18 @@
 
   </div>
 </section>
+@endsection
+
+@section('admin.script')
+  <script>
+      let ownerDemands = document.querySelectorAll('.owner-demand-slb');
+        ownerDemands.forEach( slb => {
+            if( slb.value !== 0 ){
+                slb.addEventListener('change', () => {
+                    document.getElementById("modal__loading").style.display = "block";
+                    window.location.href = slb.value
+                }) 
+            }   
+        })
+  </script>
 @endsection
