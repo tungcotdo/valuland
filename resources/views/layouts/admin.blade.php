@@ -38,7 +38,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center ps-3">
-        <img src="{{asset('admin/img/valuland-Logo.png')}}" alt="">
+        <img width="100" src="{{asset('admin/img/valuland-Logo.png')}}" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

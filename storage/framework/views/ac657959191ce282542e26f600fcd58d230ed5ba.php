@@ -6,8 +6,8 @@
       <h1>Form tải file excel danh sách chủ nhà</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-          <li class="breadcrumb-item"><a href="owner.html">Chủ nhà</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboad.index')); ?>">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.owner.index')); ?>">Chủ nhà</a></li>
           <li class="breadcrumb-item active">Tải file excel</li>
         </ol>
       </nav>

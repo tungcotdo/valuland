@@ -1,14 +1,13 @@
 
 <?php $__env->startSection('admin.main'); ?>
-    <main id="main" class="main">
         <div class="pagetitle">
-        <h1>Thống kê số liệu</h1>
-        <nav>
-            <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Thống kê</li>
-            </ol>
-        </nav>
+            <h1>Thống kê số liệu</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboad.index')); ?>">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thống kê</li>
+                </ol>
+            </nav>
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
@@ -21,16 +20,16 @@
                 <div class="card info-card sales-card">
 
                     <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                        <h6>Lọc</h6>
-                        </li>
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                            <h6>Lọc</h6>
+                            </li>
 
-                        <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                        <li><a class="dropdown-item" href="#">Tháng này</a></li>
-                        <li><a class="dropdown-item" href="#">Năm nay</a></li>
-                    </ul>
+                            <li><a class="dropdown-item" href="#">Hôm nay</a></li>
+                            <li><a class="dropdown-item" href="#">Tháng này</a></li>
+                            <li><a class="dropdown-item" href="#">Năm nay</a></li>
+                        </ul>
                     </div>
 
                     <div class="card-body">
@@ -470,6 +469,5 @@
 
         </div>
         </section>
-    </main>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/dashboard/index.blade.php ENDPATH**/ ?>

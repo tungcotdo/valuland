@@ -5,8 +5,8 @@
     <h1>Thêm mới chủ nhà</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-        <li class="breadcrumb-item"><a href="owner.html">Chủ nhà</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboad.index')); ?>">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo e(route('admin.owner.index')); ?>">Chủ nhà</a></li>
         <li class="breadcrumb-item active">Thêm mới</li>
       </ol>
     </nav>
@@ -48,7 +48,7 @@
                       <div class="col-md-6">
                         <label for="owner_demand" class="form-label">Nhu cầu</label>
                         <select id="owner_demand" class="form-select form-select w-100" name="owner_demand">
-                          <option selected="">Không có</option>
+                          <option selected="" value="0">Không có</option>
                           <option value="1">Bán</option>
                           <option value="2">Thuê</option>
                         </select>

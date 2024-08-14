@@ -14,11 +14,32 @@ use Auth;
 class OwnerController extends Controller
 {
     public function index(Request $request){
-        return view('admin.owner.index');
+        $query = DB::table('owner');
+
+        if( !empty( $request->owner_code ) ){
+            $query->where( 'owner_code', 'LIKE', '%'.$request->owner_code.'%' );
+        }
+
+        if( !empty( $request->owner_name ) ){
+            $query->where( 'owner_name', 'LIKE', '%'.$request->owner_name.'%' );
+        }
+
+        if( !empty( $request->owner_phone ) ){
+            $query->where( 'owner_phone', 'LIKE', '%'.$request->owner_phone.'%' );
+        }
+
+        if( !empty( $request->owner_demand ) ){
+            $query->where( 'owner_demand', $request->owner_demand );
+        }
+
+        $owners = $query->get();
+        return view('admin.owner.index', ['owners' => $owners]);
     }
+
     public function add(Request $request){
         return view('admin.owner.add');
     }
+    
     public function store(Request $request){
         if( empty( $request['owner_demand'] ) ){
             DB::table('owner')->insert([
@@ -31,6 +52,9 @@ class OwnerController extends Controller
                 'owner_created_at'  => Carbon::now(),
                 'owner_updated_at'  => Carbon::now()
             ]);
+
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách chủ nhà thành công!'); 
+
         }elseif( $request['owner_demand'] == 1 ){
             DB::table('sale')->insert([
                 'sale_owner_name'  => $request['owner_name'],
@@ -42,7 +66,10 @@ class OwnerController extends Controller
                 'sale_created_at'  => Carbon::now(),
                 'sale_updated_at'  => Carbon::now()
             ]);
-        }else{
+
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách bán thành công!');
+
+        }elseif( $request['owner_demand'] == 2 ){
             DB::table('rent')->insert([
                 'rent_owner_name'  => $request['owner_name'],
                 'rent_owner_phone' => $request['owner_phone'],
@@ -53,9 +80,13 @@ class OwnerController extends Controller
                 'rent_created_at'  => Carbon::now(),
                 'rent_updated_at'  => Carbon::now()
             ]);
+
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
         }
-        return view('admin.owner.index');
+
+        return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng kiểm tra lại!');
     }
+    
     public function formUploadExcel(Request $request){
         return view('admin.owner.upload-excel');
     }
@@ -88,13 +119,63 @@ class OwnerController extends Controller
         return redirect()->back()->with('success', 'Tải dữ liệu thành công!'); 
     }
     public function edit(Request $request){
-        return view('admin.owner.index');
+        $owner = DB::table('owner')->where('owner_id', $request->owner_id)->first();
+        return view('admin.owner.edit', ['owner' => $owner]);
     }
     public function update(Request $request){
-        return view('admin.owner.index');
+        if( empty( $request['owner_demand'] ) ){
+            DB::table('owner')->where('owner_id', $request->owner_id)->update([
+                'owner_name'  => $request['owner_name'],
+                'owner_phone' => $request['owner_phone'],
+                'owner_email' => $request['owner_email'],
+                'owner_code'  => $request['owner_code'],
+                'owner_created_by'  => Auth::user()->email,
+                'owner_updated_by'  => Auth::user()->email,
+                'owner_created_at'  => Carbon::now(),
+                'owner_updated_at'  => Carbon::now()
+            ]);
+
+            return redirect()->back()->with('success', 'Sửa thông tin chủ nhà thành công!'); 
+
+        }elseif( $request['owner_demand'] == 1 ){
+            DB::table('sale')->insert([
+                'sale_owner_name'  => $request['owner_name'],
+                'sale_owner_phone' => $request['owner_phone'],
+                'sale_owner_email' => $request['owner_email'],
+                'sale_owner_code'  => $request['owner_code'],
+                'sale_created_by'  => Auth::user()->email,
+                'sale_updated_by'  => Auth::user()->email,
+                'sale_created_at'  => Carbon::now(),
+                'sale_updated_at'  => Carbon::now()
+            ]);
+
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách bán thành công!');
+
+        }elseif( $request['owner_demand'] == 2 ){
+            DB::table('rent')->insert([
+                'rent_owner_name'  => $request['owner_name'],
+                'rent_owner_phone' => $request['owner_phone'],
+                'rent_owner_email' => $request['owner_email'],
+                'rent_owner_code'  => $request['owner_code'],
+                'rent_created_by'  => Auth::user()->email,
+                'rent_updated_by'  => Auth::user()->email,
+                'rent_created_at'  => Carbon::now(),
+                'rent_updated_at'  => Carbon::now()
+            ]);
+
+            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
+        }
+
+        return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng kiểm tra lại!');
     }
     public function delete(Request $request){
-        return view('admin.owner.index');
+        DB::table('owner')->delete($request->owner_id);
+        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
+    }
+
+    public function truncate(Request $request){
+        DB::table('owner')->truncate();
+        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
     }
     
 }

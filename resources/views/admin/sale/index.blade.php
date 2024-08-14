@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('admin.main')
-    <main id="main" class="main">
         <div class="pagetitle">
         <h1>Thống kê số liệu</h1>
         <nav>
@@ -470,5 +469,4 @@
 
         </div>
         </section>
-    </main>
 @endsection

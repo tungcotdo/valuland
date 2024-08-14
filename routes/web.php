@@ -30,8 +30,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('form-upload-excel', ['as' => 'admin.owner.form-upload-excel', 'uses' => 'Admin\OwnerController@formUploadExcel']);
         Route::post('upload-excel', ['as' => 'admin.owner.upload-excel', 'uses' => 'Admin\OwnerController@uploadExcel']);
         Route::get('edit/{owner_id}', ['as' => 'admin.owner.edit', 'uses' => 'Admin\OwnerController@edit']);
-        Route::get('update/{owner_id}', ['as' => 'admin.owner.update', 'uses' => 'Admin\OwnerController@update']);
+        Route::post('update/{owner_id}', ['as' => 'admin.owner.update', 'uses' => 'Admin\OwnerController@update']);
         Route::get('delete/{owner_id}', ['as' => 'admin.owner.delete', 'uses' => 'Admin\OwnerController@delete']);
+        Route::get('truncate', ['as' => 'admin.owner.truncate', 'uses' => 'Admin\OwnerController@truncate']);
     });
 
     Route::prefix('sale')->group(function () {
@@ -48,7 +49,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('add', ['as' => 'admin.rent.add', 'uses' => 'Admin\RentController@add']);
         Route::post('store', ['as' => 'admin.rent.store', 'uses' => 'Admin\RentController@store']);
         Route::get('edit/{rent_id}', ['as' => 'admin.rent.edit', 'uses' => 'Admin\RentController@edit']);
-        Route::get('update/{rent_id}', ['as' => 'admin.rent.update', 'uses' => 'Admin\RentController@update']);
+        Route::post('update/{rent_id}', ['as' => 'admin.rent.update', 'uses' => 'Admin\RentController@update']);
         Route::get('delete/{rent_id}', ['as' => 'admin.rent.delete', 'uses' => 'Admin\RentController@delete']);
     });
 
@@ -57,7 +58,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('add', ['as' => 'admin.contract.add', 'uses' => 'Admin\ContractController@add']);
         Route::post('store', ['as' => 'admin.contract.store', 'uses' => 'Admin\ContractController@store']);
         Route::get('edit/{contract_id}', ['as' => 'admin.contract.edit', 'uses' => 'Admin\ContractController@edit']);
-        Route::get('update/{contract_id}', ['as' => 'admin.contract.update', 'uses' => 'Admin\ContractController@update']);
+        Route::post('update/{contract_id}', ['as' => 'admin.contract.update', 'uses' => 'Admin\ContractController@update']);
         Route::get('delete/{contract_id}', ['as' => 'admin.contract.delete', 'uses' => 'Admin\ContractController@delete']);
     });
     
@@ -66,7 +67,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('add', ['as' => 'admin.notification.add', 'uses' => 'Admin\NotificationController@add']);
         Route::post('store', ['as' => 'admin.notification.store', 'uses' => 'Admin\NotificationController@store']);
         Route::get('edit/{notification_id}', ['as' => 'admin.notification.edit', 'uses' => 'Admin\NotificationController@edit']);
-        Route::get('update/{notification_id}', ['as' => 'admin.notification.update', 'uses' => 'Admin\NotificationController@update']);
+        Route::post('update/{notification_id}', ['as' => 'admin.notification.update', 'uses' => 'Admin\NotificationController@update']);
         Route::get('delete/{notification_id}', ['as' => 'admin.notification.delete', 'uses' => 'Admin\NotificationController@delete']);
     });
 
@@ -75,7 +76,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('add', ['as' => 'admin.user.add', 'uses' => 'Admin\UserController@add']);
         Route::post('store', ['as' => 'admin.user.store', 'uses' => 'Admin\UserController@store']);
         Route::get('edit/{user_id}', ['as' => 'admin.user.edit', 'uses' => 'Admin\UserController@edit']);
-        Route::get('update/{user_id}', ['as' => 'admin.user.update', 'uses' => 'Admin\UserController@update']);
+        Route::post('update/{user_id}', ['as' => 'admin.user.update', 'uses' => 'Admin\UserController@update']);
         Route::get('delete/{user_id}', ['as' => 'admin.user.delete', 'uses' => 'Admin\UserController@delete']);
     });
 });

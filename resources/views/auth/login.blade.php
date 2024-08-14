@@ -33,7 +33,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center text-center">
-                  <img width="200" src="{{ asset('admin/img/Valuland-Logo.png') }}" alt="">
+                  <img width="100" src="{{ asset('admin/img/Valuland-Logo.png') }}" alt="">
                 </a>
               </div><!-- End Logo -->
 
