@@ -19,7 +19,7 @@
                                     <label class="font-weight-bold mb-2 fs-17">Student code/ Mã sinh viên<span
                                                 class="required">*</span></label>
                                     <div>
-                                        <input type="text" class="form-control" name="code" value="<?php echo e($student_code); ?>"
+                                        <input type="text" class="form-control form-control-sm" name="code" value="<?php echo e($student_code); ?>"
                                                autocomplete="off">
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                              style="<?php if($k%2 == 0): ?>background-color: #efefef; <?php endif; ?> padding: 10px 0">
                                             <div class="col-lg-1 text-center" style="padding-top: 5px;">
                                                 <label>
-                                                    <input type="checkbox" class="form-control"
+                                                    <input type="checkbox" class="form-control form-control-sm"
                                                            style="width: auto!important;" name="invoice[]" value="<?php echo e($v['IdInvoice']); ?>" <?php if(in_array($v['IdInvoice'], old('invoice', [$order_list[0]['IdInvoice']]))): ?> checked <?php endif; ?>>
                                                 </label>
                                             </div>
@@ -137,7 +137,7 @@
                                     <label for="student_id" class="font-weight-bold fs-17">Student ID/ Mã sinh
                                         viên</label>
                                     <div>
-                                        <input type="text" name="student_id" id="student_id" class="form-control"
+                                        <input type="text" name="student_id" id="student_id" class="form-control form-control-sm"
                                                value="<?php echo e(old('student_id')); ?>" autocomplete="off">
                                         <?php if($errors->has('student_id')): ?>
                                             <p class="required"><?php echo e($errors->first('student_id')); ?></p>
@@ -150,7 +150,7 @@
                                     <label for="student_name" class="font-weight-bold fs-17">Fullname/ Họ, tên sinh viên
                                         (Học viên) <span class="required">*</span></label>
                                     <div>
-                                        <input type="text" name="student_name" id="student_name" class="form-control"
+                                        <input type="text" name="student_name" id="student_name" class="form-control form-control-sm"
                                                value="<?php echo e(old('student_name')); ?>" autocomplete="off">
                                         <?php if($errors->has('student_name')): ?>
                                             <p class="required"><?php echo e($errors->first('student_name')); ?></p>
@@ -181,7 +181,7 @@
                                         toán (VND)
                                         <span class="required">*</span></label>
                                     <div>
-                                        <input type="text" class="form-control" id="amount" name="amount"
+                                        <input type="text" class="form-control form-control-sm" id="amount" name="amount"
                                                onkeypress="return isNumberKey(event)" onchange="number_format(this);"
                                                value="<?php echo e(old('amount')); ?>" autocomplete="off">
                                         <?php if($errors->has('amount')): ?>
@@ -196,7 +196,7 @@
                             <label for="note" class="font-weight-bold fs-17">Content/ Nội dung thanh toán <span
                                         class="required">*</span></label>
                             <div>
-                                <textarea name="note" id="note" class="form-control"
+                                <textarea name="note" id="note" class="form-control form-control-sm"
                                           rows="5"><?php echo e(old('note')); ?></textarea>
                                 <?php if($errors->has('note')): ?>
                                     <p class="required"><?php echo e($errors->first('note')); ?></p>

@@ -6,7 +6,7 @@
       <h1>Form tải file excel danh sách chủ nhà</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('admin.dashboad.index')}}">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">Trang chủ</a></li>
           <li class="breadcrumb-item"><a href="{{route('admin.owner.index')}}">Chủ nhà</a></li>
           <li class="breadcrumb-item active">Tải file excel</li>
         </ol>
@@ -32,7 +32,7 @@
                                 <a href="{{asset('admin/doc/owner-template-upload.xlsx')}}"> (tải mẫu)</a>
                             </div>
                             <div class="col-auto validate">
-                                <input class="form-control" type="file" name="owner_upload_excel" id="owner_upload_excel">
+                                <input class="form-control form-control-sm" type="file" name="owner_upload_excel" id="owner_upload_excel">
                                 <small class="error-message text-danger"></small>
                             </div>
                             <div class="col-auto">

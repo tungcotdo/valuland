@@ -24,10 +24,10 @@
           <?php echo csrf_field(); ?>
           <div class="row">
             <div class="col-12 mb-3">
-              <label for="formFile" class="form-label">Upload your excel file</label>
+              <label for="formFile" class="form-label-sm">Upload your excel file</label>
               <div class="row">
                 <div class="col-6">
-                  <input class="form-control" type="file" name="excel_file">
+                  <input class="form-control form-control-sm" type="file" name="excel_file">
                 </div>
                 <div class="col-6">
                   <button type="submit" class="btn btn-primary">Upload</button>
@@ -42,7 +42,7 @@
           <form action="<?php echo e(route('mark.index')); ?>">
             <div class="row ">
                 <div class="col-8">
-                  <label for="formFile" class="form-label">Search by student's name</label>
+                  <label for="formFile" class="form-label-sm">Search by student's name</label>
                   <div class="row justify-content-end">
                     <div class="col-10 text-end"><input class="form-control w-100" type="text" name="search" placeholder="Search by enter name..." value="<?php echo e(!empty( $_GET['search'] ) ? $_GET['search'] : ''); ?>"></div>
                     <div class="col-2 text-end"><button type="submit" class="btn btn-success">Search</button></div>

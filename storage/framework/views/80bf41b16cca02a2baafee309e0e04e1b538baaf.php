@@ -134,35 +134,35 @@
               <form class="row g-2 mt-1" action="<?php echo e(route('admin.payment_transaction.index')); ?>">
                 
                 <div class="col-md-2">
-                  <label class="form-label">Order code</label>
+                  <label class="form-label-sm">Order code</label>
                   <input type="text" class="form-control form-control-sm" name="txt_order_code" value="<?php echo e(!empty( $_GET['txt_order_code'] ) ? $_GET['txt_order_code'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                  <label class="form-label">Payment for</label>
+                  <label class="form-label-sm">Payment for</label>
                   <input type="text" class="form-control form-control-sm" name="txt_payment_for" value="<?php echo e(!empty( $_GET['txt_payment_for'] ) ? $_GET['txt_payment_for'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Payment method</label>
+                    <label class="form-label-sm">Payment method</label>
                     <input type="text" class="form-control form-control-sm" name="txt_payment_method" value="<?php echo e(!empty( $_GET['txt_payment_method'] ) ? $_GET['txt_payment_method'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Student ID</label>
+                    <label class="form-label-sm">Student ID</label>
                     <input type="text" class="form-control form-control-sm" name="txt_student_id" value="<?php echo e(!empty( $_GET['txt_student_id'] ) ? $_GET['txt_student_id'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Student name</label>
+                    <label class="form-label-sm">Student name</label>
                     <input type="text" class="form-control form-control-sm" name="txt_student_name" value="<?php echo e(!empty( $_GET['txt_student_name'] ) ? $_GET['txt_student_name'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Status</label>
+                    <label class="form-label-sm">Status</label>
                     <input type="text" class="form-control form-control-sm" name="txt_status" value="<?php echo e(!empty( $_GET['txt_status'] ) ? $_GET['txt_status'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">Created on</label>
+                    <label class="form-label-sm">Created on</label>
                     <input type="text" class="form-control form-control-sm" name="txt_created_on" value="<?php echo e(!empty( $_GET['txt_created_on'] ) ? $_GET['txt_created_on'] : ''); ?>">
                 </div>
                 <div class="col-md-2">
-                    <label class="form-label">to</label>
+                    <label class="form-label-sm">to</label>
                     <input type="text" class="form-control form-control-sm" name="txt_to" value="<?php echo e(!empty( $_GET['txt_to'] ) ? $_GET['txt_to'] : ''); ?>">
                 </div>
                 <div class="col-12">

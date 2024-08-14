@@ -5,7 +5,7 @@
     <h1>Sửa thông tin chủ nhà</h1>
     <nav>
       <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{route('admin.dashboad.index')}}">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">Trang chủ</a></li>
       <li class="breadcrumb-item"><a href="{{route('admin.owner.index')}}">Chủ nhà</a></li>
         <li class="breadcrumb-item active">Sửa thông tin</li>
       </ol>
@@ -26,27 +26,27 @@
               <div class="card-body">
                   <div class="row g-3">
                       <div class="col-md-6 validate">
-                        <label for="owner_code" class="form-label">Căn</label>
-                        <input type="text" class="form-control" id="owner_code" name="owner_code" value="{{$owner->owner_code}}">
+                        <label for="code" class="form-label small">Căn</label>
+                        <input type="text" class="form-control form-control-sm" id="code" name="code" value="{{$owner->code}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_name" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="owner_name" name="owner_name" value="{{$owner->owner_name}}">
+                        <label for="owner_name" class="form-label small">Tên</label>
+                        <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="{{$owner->owner_name}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_email" class="form-label">Email <small class="text-danger">(Ngăn cách bằng dấu ;)</small></label>
-                        <input type="text" class="form-control" id="owner_email" name="owner_email" value="{{$owner->owner_email}}">
+                        <label for="owner_email" class="form-label small">Email <small class="text-danger"> (Ngăn cách bằng dấu ;)</small></label>
+                        <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email" value="{{$owner->owner_email}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_phone" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" id="owner_phone" name="owner_phone" value="{{$owner->owner_phone}}">
+                        <label for="owner_phone" class="form-label small">Điện thoại</label>
+                        <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="{{$owner->owner_phone}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6">
-                        <label for="owner_demand" class="form-label">Nhu cầu</label>
+                        <label for="owner_demand" class="form-label small">Nhu cầu</label>
                         <select id="owner_demand" class="form-select form-select w-100" name="owner_demand">
                           <option value="0">Không có</option>
                           <option value="1">Bán</option>
@@ -76,7 +76,7 @@
           form: '#admin-owner-store',
           rules: [
               Validator.tbRequired({
-                  selector: '#owner_code',
+                  selector: '#code',
                   submit: true
               }),
               Validator.tbRequired({

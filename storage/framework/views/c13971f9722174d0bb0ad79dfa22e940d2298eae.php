@@ -67,7 +67,7 @@
                   <form class="row g-3 needs-validation" action="<?php echo e(route('login')); ?>" method="POST" novalidate>
                     <?php echo csrf_field(); ?>
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Email</label>
+                      <label for="yourUsername" class="form-label-sm">Email</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input id="email" type="email" class="form-control <?php $__errorArgs = ['email'];
@@ -95,7 +95,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
+                      <label for="yourPassword" class="form-label-sm">Password</label>
                       <input id="password" type="password" class="form-control <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

@@ -49,7 +49,7 @@
                   <form action="{{ route('login') }}" method="POST" class="row g-3 needs-validation" novalidate>
                     @csrf
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Email</label>
+                      <label for="yourEmail" class="form-label-sm">Email</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Mật khẩu</label>
+                      <label for="yourPassword" class="form-label-sm">Mật khẩu</label>
                       <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                       @error('password')
                         <div class="invalid-feedback" role="alert">

@@ -4,7 +4,7 @@
   <h1>Danh sách chủ nhà</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboad.index')); ?>">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
       <li class="breadcrumb-item"><a href="<?php echo e(route('admin.owner.index')); ?>">Chủ nhà</a></li>
       <li class="breadcrumb-item active">Danh sách</li>
     </ol>
@@ -29,8 +29,8 @@
     <div id="flush-collapseOne" class="accordion-collapse collapse show mt-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
         <form class="row g-3" action="<?php echo e(route('admin.owner.index')); ?>">
             <div class="col-md-3 validate">
-                <label for="owner_code" class="form-label form-label-sm">Căn</label>
-                <input type="text" class="form-control form-control-sm" id="owner_code" name="owner_code" value="<?php echo e(request()->owner_code); ?>">
+                <label for="code" class="form-label form-label-sm">Mã căn</label>
+                <input type="text" class="form-control form-control-sm" id="code" name="code" value="<?php echo e(request()->code); ?>">
                 <small class="error-message text-danger"></small>
             </div>
             <div class="col-md-3 validate">
@@ -39,7 +39,7 @@
                 <small class="error-message text-danger"></small>
             </div>
             <div class="col-md-3 validate">
-                <label for="owner_phone" class="form-label form-label-sm">Số điện thoại</label>
+                <label for="owner_phone" class="form-label form-label-sm">Điện thoại</label>
                 <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="<?php echo e(request()->owner_phone); ?>">
                 <small class="error-message text-danger"></small>
             </div>
@@ -80,17 +80,17 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col" class="small">Căn</th>
-                    <th scope="col" class="small">Tên</th>
-                    <th scope="col" class="small">Điện thoại</th>
-                    <th scope="col" class="small">Nhu cầu</th>
+                    <th scope="col" class="small">MÃ CĂN</th>
+                    <th scope="col" class="small">TÊN</th>
+                    <th scope="col" class="small">ĐIỆN THOẠI</th>
+                    <th scope="col" class="small">NHU CẦU</th>
                     <th scope="col" class="small">HÀNH ĐỘNG</th>
                   </tr>
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $owners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td><?php echo e($value->owner_code); ?></td>
+                            <th><?php echo e($value->code); ?></th>
                             <td><?php echo e($value->owner_name); ?></td>
                             <td><?php echo e($value->owner_phone); ?></td>
                             <td>

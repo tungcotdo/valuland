@@ -16,12 +16,12 @@
     <?php endif; ?>
     <div class="row">
         <div class="col-6 mb-3">
-          <label for="formFile" class="form-label">Student Name</label>
-          <input class="form-control" type="text" readonly value="<?php echo e($personal_detail->student_name); ?>">
+          <label for="formFile" class="form-label-sm">Student Name</label>
+          <input class="form-control form-control-sm" type="text" readonly value="<?php echo e($personal_detail->student_name); ?>">
         </div>
         <div class="col-6 mb-3">
-          <label for="formFile" class="form-label">Student Code</label>
-          <input class="form-control" type="text" readonly value="<?php echo e($personal_detail->student_code); ?>">
+          <label for="formFile" class="form-label-sm">Student Code</label>
+          <input class="form-control form-control-sm" type="text" readonly value="<?php echo e($personal_detail->student_code); ?>">
         </div>
       </div>
     <table class="table table-bordered">

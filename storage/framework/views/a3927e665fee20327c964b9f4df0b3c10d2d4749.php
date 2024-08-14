@@ -4,7 +4,7 @@
 
   <!-- Dashboard nav -->
   <li class="nav-item">
-    <a class="nav-link " href="<?php echo e(route('admin.dashboad.index')); ?>">
+    <a class="nav-link " href="<?php echo e(route('admin.dashboard.index')); ?>">
       <i class="bi bi-grid"></i>
       <span>Trang chủ</span>
     </a>
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.owner.index')); ?>">
+        <a href="<?php echo e(route('admin.owner.form-upload-excel')); ?>">
           <i class="bi bi-circle"></i><span>Tải file Excel</span>
         </a>
       </li>
@@ -41,17 +41,17 @@
     </a>
     <ul id="sale-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="<?php echo e(route('admin.owner.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.raw')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.owner.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.select')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.owner.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.transaction')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>
@@ -65,17 +65,17 @@
     </a>
     <ul id="rent-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="<?php echo e(route('admin.sale.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.raw')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.sale.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.raw')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.sale.index')); ?>">
+        <a href="<?php echo e(route('admin.sale.raw')); ?>">
           <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>

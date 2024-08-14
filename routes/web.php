@@ -19,8 +19,8 @@ Auth::routes(['register' => false]);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
-    Route::prefix('dashboad')->group(function () {
-        Route::get('index', ['as' => 'admin.dashboad.index', 'uses' => 'Admin\DashboardController@index']);
+    Route::prefix('dashboard')->group(function () {
+        Route::get('index', ['as' => 'admin.dashboard.index', 'uses' => 'Admin\DashboardController@index']);
     });
     
     Route::prefix('owner')->group(function () {
@@ -37,11 +37,13 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     });
 
     Route::prefix('sale')->group(function () {
-        Route::get('index', ['as' => 'admin.sale.index', 'uses' => 'Admin\SaleController@index']);
+        Route::get('raw', ['as' => 'admin.sale.raw', 'uses' => 'Admin\SaleController@raw']);
+        Route::get('select', ['as' => 'admin.sale.select', 'uses' => 'Admin\SaleController@select']);
+        Route::get('transaction', ['as' => 'admin.sale.transaction', 'uses' => 'Admin\SaleController@transaction']);
         Route::get('add', ['as' => 'admin.sale.add', 'uses' => 'Admin\SaleController@add']);
         Route::post('store', ['as' => 'admin.sale.store', 'uses' => 'Admin\SaleController@store']);
         Route::get('edit/{sale_id}', ['as' => 'admin.sale.edit', 'uses' => 'Admin\SaleController@edit']);
-        Route::get('update/{sale_id}', ['as' => 'admin.sale.update', 'uses' => 'Admin\SaleController@update']);
+        Route::post('update/{sale_id}', ['as' => 'admin.sale.update', 'uses' => 'Admin\SaleController@update']);
         Route::get('delete/{sale_id}', ['as' => 'admin.sale.delete', 'uses' => 'Admin\SaleController@delete']);
     });
 
