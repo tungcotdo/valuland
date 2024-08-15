@@ -1,19 +1,14 @@
 
 <?php $__env->startSection('admin.main'); ?>
     <div class="pagetitle">
-        <h1>Danh sách dữ liệu bán</h1>
+        <h1>Danh sách bán sơ</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Danh sách bán</li>
+            <li class="breadcrumb-item active">Danh sách bán sơ</li>
           </ol>
         </nav>
       </div><!-- End Page Title -->
-
-      <div class="card-btns">
-        <a href="<?php echo e(route('admin.sale.add')); ?>" class="btn btn-sm btn-success"><i class="bi bi-upload"></i> Tải file excel</a>
-        <a href="<?php echo e(route('admin.sale.add')); ?>" class="btn btn-sm btn-warning disabled"><i class="bi bi-download"></i> Xuất file excel</a>
-      </div>
   
       <!-- Filter -->
       <div class="card">

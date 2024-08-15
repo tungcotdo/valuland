@@ -10,9 +10,11 @@ use App\Imports\FileImport;
 use DB;
 use Carbon\Carbon;
 use Auth;
+use App\Services\House;
 
 class SaleController extends Controller
 {
+
     public function raw(Request $request){
         $query = DB::table('sale')->where('sale_status', 1);
 
@@ -48,10 +50,10 @@ class SaleController extends Controller
     }
     public function edit(Request $request){
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
-        return view('admin.sale.edit', ['sale' => $sale]);
+        $sale_imgs = DB::table('sale_img')->get();
+        return view('admin.sale.edit', ['sale' => $sale, 'house' => new House, 'sale_imgs' => $sale_imgs]);
     }
     public function update(Request $request){
-        dd($request);
         DB::table('sale')->where('sale_id', $request->sale_id)->update([
             'code' => $request->code,
             'owner_name' => $request->owner_name,

@@ -1,12 +1,11 @@
 
 <?php $__env->startSection('admin.main'); ?>
     <div class="pagetitle">
-      <h1>Form thêm dữ liệu bán</h1>
+      <h1>Form sửa dữ liệu bán</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-          <li class="breadcrumb-item"><a href="sale.html">Dữ liệu bán</a></li>
-          <li class="breadcrumb-item active">Thêm mới</li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
+          <li class="breadcrumb-item active">Sửa dữ liệu bán</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -59,19 +58,21 @@
                       <div class="col-md-4">
                         <label for="sale_stype" class="form-label small">Loại căn hộ</label>
                         <select class="form-control form-control-sm" id="sale_stype" name="sale_stype">
-                          <option>3PN</option>
-                          <option>2PN</option>
-                          <option>1PN + 1</option>
-                          <option>1PN + 1, 2WC</option>
+                          <?php if( !empty( $house->_STYLE ) ): ?>
+                            <?php $__currentLoopData = $house->_STYLE; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($value); ?>"><?php echo e($text); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
                         </select>
                       </div>
                       <div class="col-md-4">
                         <label for="sale_direction" class="form-label small">Hướng</label>
                         <select class="form-control form-control-sm" id="sale_direction" name="sale_direction">
-                          <option>Đông Nam</option>
-                          <option>Đông Bắc</option>
-                          <option>Tây Nam</option>
-                          <option>Tây Bắc</option>
+                          <?php if( !empty( $house->_DIRECTION ) ): ?>
+                            <?php $__currentLoopData = $house->_DIRECTION; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($value); ?>"><?php echo e($text); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
                         </select>
                       </div>
                       <div class="col-md-4">
@@ -82,46 +83,33 @@
                         <label for="sale_price" class="form-label small">Giá bán</label>
                         <input type="text" class="form-control form-control-sm" id="sale_price" name="sale_price" value="<?php echo e($sale->sale_price); ?>">
                       </div>
-
+                      <div class="col-md-12">
+                        <label for="sale_description" class="form-label small">Mô tả</label>
+                        <textarea class="form-control form-control-sm" name="sale_description" id="sale_description"><?php echo e($sale->sale_description); ?></textarea>
+                      </div>
                     </div>
                 </div> <!-- end card-body -->
               </div> <!-- end card -->
-              
-              <div class="card mt-3">
-                <div class="card-body">
-                  <h5 class="card-title py-0">Mô tả</h5>
-    
-                  <!-- Mô tả -->
-                  <div class="quill-editor-default">
-                    <textarea name="sale_description" class="quill-editor-default">
-                      <?php echo e($sale->sale_description); ?>
-
-                    </textarea>
-                  </div>
-                  <!-- End Mô tả -->
-    
-                </div>
-              </div>
 
               <div class="card mt-3">
                 <div class="card-body">
-                      <!-- Images -->
-                      <div class="col-md-12">
-                        
-                        
-                        <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-plus-lg"></i> Thêm mới ảnh</a>
-                        <div class="row g-2">
+                    <!-- Images -->
+                    <div class="col-md-12">
+                      <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-plus-lg"></i> Thêm mới ảnh</a>
+                      <div class="row g-2" id="sale-img">
+                        <?php $__currentLoopData = $sale_imgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                           <div class="col-lg-2">  
-                            <div class="card">
-                              <div class="card-body text-center">
-                                <a href="" class="btn btn-sm btn-danger"><i class="small bi bi-trash"> Xóa</i> </a>
+                              <div class="card">
+                                  <div class="card-body text-center">
+                                      <a onclick="return confirm('Bạn có muốn xóa ảnh này không?')"  href="<?php echo e(route('admin.media.sale-delete', $value->sale_img_id)); ?>" class="btn btn-sm btn-danger sale-img-delete"><i class="small bi bi-trash"> Xóa</i> </a>
+                                  </div>
+                                  <a href="<?php echo e(asset($value->sale_img_path)); ?>" class="card-img-link" target="_blank"><img class="card-img-top rounded-0" src="<?php echo e(asset($value->sale_img_path)); ?>" alt="Card image cap"></a>
                               </div>
-                              <a href="/assets/img/thumnail.jpg" class="card-img-link" target="_blank"><img class="card-img-top rounded-0" src="/assets/img/thumnail.jpg" alt="Card image cap"></a>
-                            </div>
                           </div>
-                        </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </div>
-                      <!-- End Images -->
+                    </div>
+                    <!-- End Images -->
                 </div> <!-- end card-body -->
               </div> <!-- end card -->
 
@@ -145,13 +133,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="#">
+            <form action="<?php echo e(route('admin.media.sale-upload', $sale->sale_id)); ?>" id="house-img-form" method="POST" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
                 <div class="row">
-                    <div class="col-auto">
-                        <input class="form-control form-control-sm" type="file">
+                    <div class="col-auto validate">
+                        <input class="form-control" type="file" id="house-image-input" name="photos[]" multiple>
+                        <small class="error-message text-danger"></small>
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-primary">Lưu</button>
+                        <button class="btn btn-primary" id="house-image-save">Lưu</button>
                     </div>
                 </div>
             </form>
@@ -159,5 +149,34 @@
         </div>
       </div>
     </div><!-- End Upload IMG Modal-->
+
+    <?php $__env->startSection('admin.script'); ?>
+    <script>
+
+      document.querySelectorAll('.sale-img-delete').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById("modal__loading").style.display = "block";
+        })
+      });
+
+      Validator({
+          form: '#house-img-form',
+          rules: [
+              Validator.file({
+                  required: true,
+                  selector: '#house-image-input',
+                  extension: ['png','jpg'],
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+            document.getElementById("modal__loading").style.display = "block";
+            data.form.submit();
+          }
+      });
+
+    </script>
+    <?php $__env->stopSection(); ?>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/sale/edit.blade.php ENDPATH**/ ?>

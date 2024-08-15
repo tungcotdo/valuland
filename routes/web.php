@@ -23,6 +23,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('index', ['as' => 'admin.dashboard.index', 'uses' => 'Admin\DashboardController@index']);
     });
     
+    Route::prefix('media')->group(function () {
+        Route::post('sale-upload/{sale_id}', ['as' => 'admin.media.sale-upload', 'uses' => 'Admin\MediaController@saleUpload']);
+        Route::get('sale-delete/{sale_img_id}', ['as' => 'admin.media.sale-delete', 'uses' => 'Admin\MediaController@saleDelete']);
+        Route::post('rent-upload/{sale_id}', ['as' => 'admin.media.rent-upload', 'uses' => 'Admin\MediaController@rentUpload']);
+    });
+
     Route::prefix('owner')->group(function () {
         Route::get('index', ['as' => 'admin.owner.index', 'uses' => 'Admin\OwnerController@index']);
         Route::get('add', ['as' => 'admin.owner.add', 'uses' => 'Admin\OwnerController@add']);

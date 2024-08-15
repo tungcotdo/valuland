@@ -42,17 +42,17 @@
     <ul id="sale-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
         <a href="{{route('admin.sale.raw')}}">
-          <i class="bi bi-circle"></i><span>Danh sách sơ</span>
+          <i class="bi bi-circle"></i><span>Danh sách bán sơ</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.sale.select')}}">
-          <i class="bi bi-circle"></i><span>Danh sách tinh</span>
+          <i class="bi bi-circle"></i><span>Danh sách bán tinh</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.sale.transaction')}}">
-          <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
+          <i class="bi bi-circle"></i><span>Danh sách bán giao dịch</span>
         </a>
       </li>
     </ul>
