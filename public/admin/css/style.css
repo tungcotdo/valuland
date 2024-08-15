@@ -1259,3 +1259,13 @@ h6 {
 .form-select{
   width: auto;
 }
+
+.valid .form-control{
+  background-color: #eaf8e9 !important;
+  border: 1px solid #91f08c !important;
+}
+
+.invalid .form-control{
+  background-color: #f5dfdf !important;
+  border: 1px solid #f08c8c !important;
+}

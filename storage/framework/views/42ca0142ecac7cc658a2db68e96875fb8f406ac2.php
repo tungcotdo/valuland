@@ -25,27 +25,27 @@
                     <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
                       <div class="col-md-2">
-                        <label for="sale_subdivision" class="form-label small">Phân khu</label>
+                        <label for="sale_subdivision" class="form-label-sm">Phân khu</label>
                         <input type="text" class="form-control form-control-sm" id="sale_subdivision" name="sale_subdivision">
                       </div>
                       <div class="col-md-2">
-                        <label for="sale_building" class="form-label small">Tòa</label>
+                        <label for="sale_building" class="form-label-sm">Tòa</label>
                         <input type="email" class="form-control form-control-sm" id="sale_building" name="sale_building">
                       </div>
                       <div class="col-md-2">
-                        <label for="code" class="form-label small">Mã căn</label>
+                        <label for="code" class="form-label-sm">Mã căn</label>
                         <input type="email" class="form-control form-control-sm" id="code" value="S102.1821">
                       </div>
                       <div class="col-md-2">
-                        <label for="inputEmail5" class="form-label small">Tầng</label>
+                        <label for="inputEmail5" class="form-label-sm">Tầng</label>
                         <input type="email" class="form-control form-control-sm" id="inputEmail5" value="18">
                       </div>
                       <div class="col-md-2">
-                        <label for="inputEmail5" class="form-label small">Căn</label>
+                        <label for="inputEmail5" class="form-label-sm">Căn</label>
                         <input type="email" class="form-control form-control-sm" id="inputEmail5" value="21">
                       </div>
                       <div class="col-md-2">
-                        <label for="inputEmail5" class="form-label small">Loại căn hộ</label>
+                        <label for="inputEmail5" class="form-label-sm">Loại căn hộ</label>
                         <select class="form-control form-control-sm">
                           <option>3PN</option>
                           <option>2PN</option>
@@ -54,7 +54,7 @@
                         </select>
                       </div>
                       <div class="col-md-2">
-                        <label for="validationDefault04" class="form-label small">Hướng</label>
+                        <label for="validationDefault04" class="form-label-sm">Hướng</label>
                         <select class="form-control form-control-sm">
                           <option>Đông Nam</option>
                           <option>Đông Bắc</option>
@@ -63,11 +63,11 @@
                         </select>
                       </div>
                       <div class="col-md-2">
-                        <label for="inputPassword5" class="form-label small">DT thông thủy</label>
+                        <label for="inputPassword5" class="form-label-sm">DT thông thủy</label>
                         <input type="text" class="form-control form-control-sm" id="inputPassword5" value="74.80">
                       </div>
                       <div class="col-md-2">
-                        <label for="inputPassword5" class="form-label small">Giá bán</label>
+                        <label for="inputPassword5" class="form-label-sm">Giá bán</label>
                         <input type="text" class="form-control form-control-sm" id="inputPassword5" value="">
                       </div>
 

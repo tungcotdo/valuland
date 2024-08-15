@@ -50,7 +50,7 @@ class SaleController extends Controller
     }
     public function edit(Request $request){
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
-        $sale_imgs = DB::table('sale_img')->get();
+        $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
         return view('admin.sale.edit', ['sale' => $sale, 'house' => new House, 'sale_imgs' => $sale_imgs]);
     }
     public function update(Request $request){

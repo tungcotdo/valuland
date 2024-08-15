@@ -26,27 +26,27 @@
               <div class="card-body">
                   <div class="row g-3">
                       <div class="col-md-6 validate">
-                        <label for="code" class="form-label small">Căn</label>
+                        <label for="code" class="form-label-sm">Căn</label>
                         <input type="text" class="form-control form-control-sm" id="code" name="code" value="<?php echo e($owner->code); ?>">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_name" class="form-label small">Tên</label>
+                        <label for="owner_name" class="form-label-sm">Tên</label>
                         <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="<?php echo e($owner->owner_name); ?>">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_email" class="form-label small">Email <small class="text-danger"> (Ngăn cách bằng dấu ;)</small></label>
+                        <label for="owner_email" class="form-label-sm">Email <small class="text-danger"> (Ngăn cách bằng dấu ;)</small></label>
                         <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email" value="<?php echo e($owner->owner_email); ?>">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
-                        <label for="owner_phone" class="form-label small">Điện thoại</label>
+                        <label for="owner_phone" class="form-label-sm">Điện thoại</label>
                         <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="<?php echo e($owner->owner_phone); ?>">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6">
-                        <label for="owner_demand" class="form-label small">Nhu cầu</label>
+                        <label for="owner_demand" class="form-label-sm">Nhu cầu</label>
                         <select id="owner_demand" class="form-select form-select w-100" name="owner_demand">
                           <option value="0">Không có</option>
                           <option value="1">Bán</option>

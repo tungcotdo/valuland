@@ -18,45 +18,46 @@
           <div class="row">
 
             <!-- Start col-lg-12 -->
-            <form class="col-lg-12" action="{{route('admin.sale.update', $sale->sale_id)}}" method="POST">
+            <form class="col-lg-12" action="{{route('admin.sale.update', $sale->sale_id)}}" method="POST" id="admin-sale-edit">
               @csrf  
               <div class="card">
                 <div class="card-body">
                     <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
-                      <div class="col-md-4">
-                        <label for="code" class="form-label small">Mã căn</label>
+                      <div class="col-md-4 validate">
+                        <label for="code" class="form-label-sm">Mã căn<small class="text-danger"> *</small></label>
                         <input type="text" class="form-control form-control-sm" id="code" name="code" value="{{$sale->code}}">
+                        <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-4 validate">
-                        <label for="owner_name" class="form-label-sm">Tên chủ hộ</label>
+                        <label for="owner_name" class="form-label-sm">Tên chủ hộ <small class="text-danger"> *</small></label>
                         <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="{{$sale->owner_name}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-4 validate">
-                        <label for="owner_email" class="form-label-sm">Email chủ hộ<small class="text-danger"> (Ngăn cách bằng dấu ;)</small></label>
+                        <label for="owner_email" class="form-label-sm">Email chủ hộ (Ngăn cách bằng dấu ;)<small class="text-danger"> *</small></label>
                         <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email" value="{{$sale->owner_email}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-4 validate">
-                        <label for="owner_phone" class="form-label-sm">Điện thoại chủ hộ</label>
+                        <label for="owner_phone" class="form-label-sm">Điện thoại chủ hộ <small class="text-danger"> *</small></label>
                         <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="{{$sale->owner_phone}}">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_subdivision" class="form-label small">Phân khu</label>
+                        <label for="sale_subdivision" class="form-label-sm">Phân khu</label>
                         <input type="text" class="form-control form-control-sm" id="sale_subdivision" name="sale_subdivision" value="{{$sale->sale_subdivision}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_building" class="form-label small">Tòa</label>
+                        <label for="sale_building" class="form-label-sm">Tòa</label>
                         <input type="email" class="form-control form-control-sm" id="sale_building" name="sale_building" value="{{$sale->sale_building}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_floor" class="form-label small">Tầng</label>
+                        <label for="sale_floor" class="form-label-sm">Tầng</label>
                         <input type="email" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="{{$sale->sale_floor}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_stype" class="form-label small">Loại căn hộ</label>
+                        <label for="sale_stype" class="form-label-sm">Loại căn hộ</label>
                         <select class="form-control form-control-sm" id="sale_stype" name="sale_stype">
                           @if( !empty( $house->_STYLE ) )
                             @foreach( $house->_STYLE as $value => $text )
@@ -66,7 +67,7 @@
                         </select>
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_direction" class="form-label small">Hướng</label>
+                        <label for="sale_direction" class="form-label-sm">Hướng</label>
                         <select class="form-control form-control-sm" id="sale_direction" name="sale_direction">
                           @if( !empty( $house->_DIRECTION ) )
                             @foreach( $house->_DIRECTION as $value => $text )
@@ -76,15 +77,15 @@
                         </select>
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_navigable_area" class="form-label small">DT thông thủy</label>
+                        <label for="sale_navigable_area" class="form-label-sm">DT thông thủy</label>
                         <input type="text" class="form-control form-control-sm" id="sale_navigable_area" name="sale_navigable_area" value="{{$sale->sale_navigable_area}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_price" class="form-label small">Giá bán</label>
+                        <label for="sale_price" class="form-label-sm">Giá bán</label>
                         <input type="text" class="form-control form-control-sm" id="sale_price" name="sale_price" value="{{$sale->sale_price}}">
                       </div>
                       <div class="col-md-12">
-                        <label for="sale_description" class="form-label small">Mô tả</label>
+                        <label for="sale_description" class="form-label-sm">Mô tả</label>
                         <textarea class="form-control form-control-sm" name="sale_description" id="sale_description">{{$sale->sale_description}}</textarea>
                       </div>
                     </div>
@@ -166,6 +167,32 @@
                   required: true,
                   selector: '#house-image-input',
                   extension: ['png','jpg'],
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+            document.getElementById("modal__loading").style.display = "block";
+            data.form.submit();
+          }
+      });
+
+      Validator({
+          form: '#admin-sale-edit',
+          rules: [
+            Validator.tbRequired({
+                  selector: '#code',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#owner_name',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#owner_email',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#owner_phone',
                   submit: true
               })
           ],
