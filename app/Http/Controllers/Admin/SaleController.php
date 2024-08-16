@@ -38,7 +38,26 @@ class SaleController extends Controller
         return view('admin.sale.raw', ['sale_raws' => $sale_raws]);
     }
     public function select(Request $request){
-        return view('admin.sale.select');
+        $query = DB::table('sale')->where('sale_status', 2);
+
+        if( !empty( $request->code ) ){
+            $query->where( 'code', 'LIKE', '%'.$request->code.'%' );
+        }
+
+        if( !empty( $request->owner_name ) ){
+            $query->where( 'owner_name', 'LIKE', '%'.$request->owner_name.'%' );
+        }
+
+        if( !empty( $request->owner_phone ) ){
+            $query->where( 'owner_phone', 'LIKE', '%'.$request->owner_phone.'%' );
+        }
+
+        if( !empty( $request->owner_demand ) ){
+            $query->where( 'owner_demand', $request->owner_demand );
+        }
+
+        $sale_selects = $query->get();
+        return view('admin.sale.select', ['sale_selects' => $sale_selects]);
     }
     public function transaction(Request $request){
         return view('admin.sale.transaction');
@@ -50,8 +69,7 @@ class SaleController extends Controller
     }
     public function edit(Request $request){
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
-        $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
-        return view('admin.sale.edit', ['sale' => $sale, 'house' => new House, 'sale_imgs' => $sale_imgs]);
+        return view('admin.sale.edit', ['sale' => $sale, 'house' => new House]);
     }
     public function update(Request $request){
         DB::table('sale')->where('sale_id', $request->sale_id)->update([

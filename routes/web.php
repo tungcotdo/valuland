@@ -24,8 +24,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     });
     
     Route::prefix('media')->group(function () {
+        Route::post('sale-load/{sale_id}', ['as' => 'admin.media.sale-load', 'uses' => 'Admin\MediaController@saleLoad']);
         Route::post('sale-upload/{sale_id}', ['as' => 'admin.media.sale-upload', 'uses' => 'Admin\MediaController@saleUpload']);
-        Route::get('sale-delete/{sale_img_id}', ['as' => 'admin.media.sale-delete', 'uses' => 'Admin\MediaController@saleDelete']);
+        Route::post('sale-delete/{sale_img_id}', ['as' => 'admin.media.sale-delete', 'uses' => 'Admin\MediaController@saleDelete']);
         Route::post('rent-upload/{sale_id}', ['as' => 'admin.media.rent-upload', 'uses' => 'Admin\MediaController@rentUpload']);
     });
 

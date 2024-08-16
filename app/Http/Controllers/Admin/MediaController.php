@@ -13,18 +13,26 @@ use Illuminate\Support\Facades\URL;
 
 class MediaController extends Controller
 {
+    public function saleLoad(Request $request){
+        $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
+                
+        $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+
+        return Response()->json(["success" => true, "template" => $template]);
+    }
+
     public function saleUpload(Request $request){
         try{
-            $files = $request->file('photos');
+            $files = $request->file('files');
 
             foreach( $files as $key => $file ){
 
                 $file_name = rand().'.'.$file->extension();
-
+                
                 $upload_path = 'upload'. '/'. 'sale' . '/' . $request->sale_id  . '/';
-    
+                
                 $file->move($upload_path, $file_name);
-    
+                
                 DB::table('sale_img')->insert([
                     'sale_id' => $request->sale_id,
                     'sale_img_path' => $upload_path . $file_name,
@@ -33,7 +41,12 @@ class MediaController extends Controller
                 ]);
             }
 
-            return Redirect::to(URL::previous() . "#sale-img")->with('success', 'Thêm ảnh thành công!');
+            $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
+                
+            $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+
+            return Response()->json(["success" => true, "template" => $template]);
+
         }
         catch(Exception $e){
             return Redirect::to(URL::previous() . "#sale-img")->with('success', 'Có lỗi xảy ra!');
@@ -42,9 +55,16 @@ class MediaController extends Controller
 
     public function saleDelete(Request $request){
         $sale_img = DB::table('sale_img')->where('sale_img_id', $request->sale_img_id)->first();
+        
         File::delete($sale_img->sale_img_path);
+        
         DB::table('sale_img')->where('sale_img_id', $request->sale_img_id)->delete();
-        return Redirect::to(URL::previous() . "#sale-img")->with('success', 'Xóa ảnh thành công!');
+
+        $sale_imgs = DB::table('sale_img')->where('sale_id', $sale_img->sale_id)->get();
+                
+        $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+
+        return Response()->json(["success" => true, "template" => $template]);
     }
 
     public function rentUpload(Request $request){

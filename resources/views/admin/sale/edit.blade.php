@@ -97,18 +97,7 @@
                     <!-- Images -->
                     <div class="col-md-12">
                       <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-plus-lg"></i> Thêm mới ảnh</a>
-                      <div class="row g-2" id="sale-img">
-                        @foreach( $sale_imgs as $value )
-                          <div class="col-lg-2">  
-                              <div class="card">
-                                  <div class="card-body text-center">
-                                      <a onclick="return confirm('Bạn có muốn xóa ảnh này không?')"  href="{{route('admin.media.sale-delete', $value->sale_img_id)}}" class="btn btn-sm btn-danger sale-img-delete"><i class="small bi bi-trash"> Xóa</i> </a>
-                                  </div>
-                                  <a href="{{asset($value->sale_img_path)}}" class="card-img-link" target="_blank"><img class="card-img-top rounded-0" src="{{asset($value->sale_img_path)}}" alt="Card image cap"></a>
-                              </div>
-                          </div>
-                        @endforeach
-                      </div>
+                      <div class="row g-2" id="sale-img"></div>
                     </div>
                     <!-- End Images -->
                 </div> <!-- end card-body -->
@@ -131,14 +120,15 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Tải ảnh căn hộ</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-modal-close"></button>
           </div>
           <div class="modal-body">
-            <form action="{{route('admin.media.sale-upload', $sale->sale_id)}}" id="house-img-form" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.media.sale-upload', $sale->sale_id)}}" id="admin-sale-uploadimg" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="sale-loadimg-url" value="{{route('admin.media.sale-load', $sale->sale_id)}}">
                 @csrf
                 <div class="row">
                     <div class="col-auto validate">
-                        <input class="form-control" type="file" id="house-image-input" name="photos[]" multiple>
+                        <input class="form-control" type="file" id="sale_img_input" name="files[]" multiple>
                         <small class="error-message text-danger"></small>
                     </div>
                     <div class="col-auto">
@@ -152,57 +142,7 @@
     </div><!-- End Upload IMG Modal-->
 
     @section('admin.script')
-    <script>
-
-      document.querySelectorAll('.sale-img-delete').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.getElementById("modal__loading").style.display = "block";
-        })
-      });
-
-      Validator({
-          form: '#house-img-form',
-          rules: [
-              Validator.file({
-                  required: true,
-                  selector: '#house-image-input',
-                  extension: ['png','jpg'],
-                  submit: true
-              })
-          ],
-          onSubmit: (data) => {
-            document.getElementById("modal__loading").style.display = "block";
-            data.form.submit();
-          }
-      });
-
-      Validator({
-          form: '#admin-sale-edit',
-          rules: [
-            Validator.tbRequired({
-                  selector: '#code',
-                  submit: true
-              }),
-              Validator.tbRequired({
-                  selector: '#owner_name',
-                  submit: true
-              }),
-              Validator.tbRequired({
-                  selector: '#owner_email',
-                  submit: true
-              }),
-              Validator.tbRequired({
-                  selector: '#owner_phone',
-                  submit: true
-              })
-          ],
-          onSubmit: (data) => {
-            document.getElementById("modal__loading").style.display = "block";
-            data.form.submit();
-          }
-      });
-
-    </script>
+    <script src="{{asset('form/sale.js')}}"></script>
     @endsection
 
 @endsection
