@@ -9,8 +9,8 @@
   <title>Valuland</title>
 
   <!-- Favicons -->
-  <link href="<?php echo e(asset('admin/img/favicon.png')); ?>" rel="icon">
-  <link href="<?php echo e(asset('admin/img/apple-touch-icon.png')); ?>" rel="apple-touch-icon">
+  <link href="<?php echo e(asset('admin/img/valuland-favicon.png')); ?>" rel="icon">
+  <link href="<?php echo e(asset('admin/img/valuland-favicon.png')); ?>" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

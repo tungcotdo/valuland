@@ -47,11 +47,15 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('raw', ['as' => 'admin.sale.raw', 'uses' => 'Admin\SaleController@raw']);
         Route::get('select', ['as' => 'admin.sale.select', 'uses' => 'Admin\SaleController@select']);
         Route::get('transaction', ['as' => 'admin.sale.transaction', 'uses' => 'Admin\SaleController@transaction']);
+        Route::get('transaction-edit/{sale_id}', ['as' => 'admin.sale.transaction-edit', 'uses' => 'Admin\SaleController@transactionEdit']);
+        Route::post('transaction-update/{sale_id}', ['as' => 'admin.sale.transaction-update', 'uses' => 'Admin\SaleController@transactionUpdate']);
+        Route::get('transaction', ['as' => 'admin.sale.transaction', 'uses' => 'Admin\SaleController@transaction']);
         Route::get('add', ['as' => 'admin.sale.add', 'uses' => 'Admin\SaleController@add']);
         Route::post('store', ['as' => 'admin.sale.store', 'uses' => 'Admin\SaleController@store']);
         Route::get('edit/{sale_id}', ['as' => 'admin.sale.edit', 'uses' => 'Admin\SaleController@edit']);
         Route::post('update/{sale_id}', ['as' => 'admin.sale.update', 'uses' => 'Admin\SaleController@update']);
         Route::get('delete/{sale_id}', ['as' => 'admin.sale.delete', 'uses' => 'Admin\SaleController@delete']);
+        Route::get('status/{sale_id}/{sale_status}', ['as' => 'admin.sale.status', 'uses' => 'Admin\SaleController@status']);
     });
 
     Route::prefix('rent')->group(function () {

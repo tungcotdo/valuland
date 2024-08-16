@@ -78,6 +78,7 @@
                                     <td>{{$value->sale_updated_by}}</td>
                                     <td>{{$value->sale_updated_at}}</td>
                                     <td>
+                                        <a href="{{route('admin.sale.status', ['sale_id' => $value->sale_id, 'sale_status'=> 3])}}" class="btn btn-sm btn-success"><i class="bi bi-cursor small"> Giao dịch</i></a>
                                         <a href="{{route('admin.sale.edit', $value->sale_id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
                                         <a href="{{route('admin.sale.delete', $value->sale_id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
                                     </td>

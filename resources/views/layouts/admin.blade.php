@@ -9,8 +9,8 @@
   <title>Valuland</title>
 
   <!-- Favicons -->
-  <link href="{{asset('admin/img/favicon.png')}}" rel="icon">
-  <link href="{{asset('admin/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('admin/img/valuland-favicon.png')}}" rel="icon">
+  <link href="{{asset('admin/img/valuland-favicon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
