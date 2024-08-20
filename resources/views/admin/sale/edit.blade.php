@@ -5,6 +5,8 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.sale.raw')}}">Danh sách bán sơ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.sale.select')}}">Danh sách bán tinh</a></li>
           <li class="breadcrumb-item active">Sửa dữ liệu bán</li>
         </ol>
       </nav>

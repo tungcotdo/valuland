@@ -18,6 +18,10 @@ use Illuminate\Http\Request;
 Auth::routes(['register' => false]);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::get('/', function () {
+    return redirect()->route('admin.dashboard.index');
+});
+
 Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('index', ['as' => 'admin.dashboard.index', 'uses' => 'Admin\DashboardController@index']);

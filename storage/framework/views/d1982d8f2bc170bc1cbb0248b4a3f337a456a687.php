@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-6 mb-3">
           <label for="formFile" class="form-label-sm">Upload your excel file</label>
-          <input class="form-control form-control-sm" type="file" name="excel_file">
+          <input class="form-control-sm" type="file" name="excel_file">
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>

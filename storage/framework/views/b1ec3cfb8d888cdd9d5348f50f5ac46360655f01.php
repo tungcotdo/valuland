@@ -218,14 +218,16 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Modal loading page -->
-  <div class="modal" id="modal__loading">
-      <div class="modal__overlay"></div>
-      <div class="modal__content">
-          <div class="loader"></div>
-          <div class="loading__title">Đang xử lý ...</div>
-      </div>
-  </div>
+    <!-- Modal loading page -->
+    <div class="modal" id="modal__loading">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <div class="modal__loading">
+                <div class="modal__loading-icon"></div>
+                <div class="modal__loading-text">Đang xử lý ...</div>
+            </div>
+        </div>
+    </div>
 
   <!-- Vendor JS Files -->
   <script src="<?php echo e(asset('admin/vendor/apexcharts/apexcharts.min.js')); ?>"></script>

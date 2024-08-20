@@ -21,17 +21,17 @@
           <div id="flush-collapseOne" class="accordion-collapse collapse show mt-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
             <form class="row g-3" action="{{route('admin.sale.raw')}}">
                 <div class="col-md-3 validate">
-                    <label for="code" class="form-label form-label-sm">Mã căn</label>
+                    <label for="code" class="form-label-sm">Mã căn</label>
                     <input type="text" class="form-control form-control-sm" id="code" name="code" value="{{request()->code}}">
                     <small class="error-message text-danger"></small>
                 </div>
                 <div class="col-md-3 validate">
-                    <label for="owner_name" class="form-label form-label-sm">Tên</label>
+                    <label for="owner_name" class="form-label-sm">Tên</label>
                     <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="{{request()->owner_name}}">
                     <small class="error-message text-danger"></small>
                 </div>
                 <div class="col-md-3 validate">
-                    <label for="owner_phone" class="form-label form-label-sm">Điện thoại</label>
+                    <label for="owner_phone" class="form-label-sm">Điện thoại</label>
                     <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="{{request()->owner_phone}}">
                     <small class="error-message text-danger"></small>
                 </div>
@@ -79,7 +79,7 @@
                                     <td>{{$value->sale_updated_at}}</td>
                                     <td>
                                         <a href="{{route('admin.sale.edit', $value->sale_id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
-                                        <a href="{{route('admin.sale.delete', $value->sale_id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
+                                        <a onclick="return confirm('Bạn có muốn xóa hết dữ liệu không?')" href="{{route('admin.sale.delete', $value->sale_id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
                                     </td>
                                 </tr>
                             @endforeach

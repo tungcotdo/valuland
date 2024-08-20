@@ -18,47 +18,53 @@
           <div class="row">
 
             <!-- Start col-lg-12 -->
-            <form class="col-lg-12" action="{{route('admin.sale.transaction-update', $sale->sale_id)}}" method="POST" id="admin-sale-transaction-update">
+            <form class="col-lg-12" action="{{route('admin.sale.transaction-update', $sale->sale_id)}}" method="POST" id="admin-sale-transaction-update" enctype="multipart/form-data">
               @csrf  
               <div class="card">
                 <div class="card-body">
                     <div class="row g-3">
-                      <div class="col-md-4 validate">
+                      <div class="col-md-2 validate">
                         <label for="code" class="form-label-sm">Mã căn<small class="text-danger"> *</small></label>
                         <input type="text" class="form-control form-control-sm" id="code" name="code" value="{{$sale->code}}">
                         <small class="error-message text-danger"></small>
                       </div>
-                      <div class="col-md-4">
-                        <label for="sale_deposit_date" class="form-label small">NGÀY ĐẶT CỌC</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_deposit_date" name="sale_deposit_date" value="{{$sale->sale_deposit_date}}">
-                      </div>
-                      <div class="col-md-4">
-                        <label for="sale_deposit" class="form-label small">TIỀN ĐẶT CỌC</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_deposit" name="sale_deposit" value="{{$sale->sale_deposit}}">
-                      </div>
-                      <div class="col-md-4">
-                        <label for="sale_contract_date" class="form-label small">NGÀY KÝ HỢP ĐỒNG</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_contract_date" name="sale_contract_date" value="{{$sale->sale_contract_date}}">
-                      </div>
-                      <div class="col-md-4">
-                        <label for="sale_broker" class="form-label small">NGƯỜI MÔ GIỚI</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_broker" name="sale_broker" value="{{$sale->sale_broker}}">
-                      </div>
-                      <div class="col-md-4">
-                        <label for="sale_price" class="form-label small">GIÁ</label>
+                      <div class="col-md-2">
+                        <label for="sale_price" class="form-label-sm">Giá</label>
                         <input type="text" class="form-control form-control-sm" id="sale_price" name="sale_price" value="{{$sale->sale_price}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_legal_person" class="form-label small">NGƯỜI LÀM PHÁP LÝ</label>
+                        <label for="sale_deposit_date" class="form-label-sm">Ngày cọc</label>
+                        <input type="text" class="form-control form-control-sm" id="sale_deposit_date" name="sale_deposit_date" value="{{$sale->sale_deposit_date}}">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_deposit" class="form-label-sm">Tiền cọc</label>
+                        <input type="text" class="form-control form-control-sm" id="sale_deposit" name="sale_deposit" value="{{$sale->sale_deposit}}">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_contract_date" class="form-label-sm">Ngày ký hợp đồng</label>
+                        <input type="text" class="form-control form-control-sm" id="sale_contract_date" name="sale_contract_date" value="{{$sale->sale_contract_date}}">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_broker" class="form-label-sm">Người mô giới</label>
+                        <input type="text" class="form-control form-control-sm" id="sale_broker" name="sale_broker" value="{{$sale->sale_broker}}">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_legal_person" class="form-label-sm">Người pháp lý</label>
                         <input type="text" class="form-control form-control-sm" id="sale_legal_person" name="sale_legal_person" value="{{$sale->sale_legal_person}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_contract_img" class="form-label small">BẢN CHỤP HỢP ĐỒNG</label>
+                        <label for="sale_contract_img" class="form-label-sm">Ảnh hợp đồng</label>
                         <input class="form-control form-control-sm" type="file" id="sale_contract_img" name="sale_contract_img">
+                        <input class="form-control form-control-sm" type="text" id="sale_contract_img_text" name="sale_contract_img_text" value="{{asset($sale->sale_contract_img)}}" hidden>
+                        @if( !empty( $sale->sale_contract_img ) )
+                          <div class="card mt-2 w-25">
+                              <a href="{{asset($sale->sale_contract_img)}}" class="card-img-link" target="_blank"><img class="card-img-top rounded-0" src="{{asset($sale->sale_contract_img)}}" alt="Ảnh hợp đồng"></a>
+                          </div>
+                        @endif
                       </div>
-                      <div class="col-md-12">
+                      <div class="col-md-8">
                         <label for="sale_description" class="form-label-sm">Mô tả</label>
-                        <textarea class="form-control form-control-sm" name="sale_description" id="sale_description">{{$sale->sale_description}}</textarea>
+                        <textarea rows="4" class="form-control form-control-sm" name="sale_description" id="sale_description">{{$sale->sale_description}}</textarea>
                       </div>
                     </div>
                 </div> <!-- end card-body -->

@@ -19,15 +19,15 @@
       <div class="row">
         <div class="col-4 mb-3">
             <label for="formFile" class="form-label-sm">BUV name</label>
-            <input class="form-control form-control-sm" type="text" name="value" value="<?php echo e(!empty($_GET['value']) ? $_GET['value'] : ''); ?>">
+            <input class="form-control-sm" type="text" name="value" value="<?php echo e(!empty($_GET['value']) ? $_GET['value'] : ''); ?>">
         </div>
         <div class="col-4 mb-3">
             <label for="formFile" class="form-label-sm">SQE</label>
-            <input class="form-control form-control-sm" type="text" name="key" value="<?php echo e(!empty($_GET['key']) ? $_GET['key'] : ''); ?>">
+            <input class="form-control-sm" type="text" name="key" value="<?php echo e(!empty($_GET['key']) ? $_GET['key'] : ''); ?>">
         </div>
         <div class="col-4 mb-3">
             <label for="formFile" class="form-label-sm">Code</label>
-            <input class="form-control form-control-sm" type="text" name="code" value="<?php echo e(!empty($_GET['code']) ? $_GET['code'] : ''); ?>">
+            <input class="form-control-sm" type="text" name="code" value="<?php echo e(!empty($_GET['code']) ? $_GET['code'] : ''); ?>">
         </div>
       </div>
       <button type="submit" class="btn btn-primary my-2">Submit</button>

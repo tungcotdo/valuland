@@ -11,6 +11,7 @@ use DB;
 use Carbon\Carbon;
 use Auth;
 use App\Services\House;
+use Validator,Response,File;
 
 class SaleController extends Controller
 {
@@ -88,23 +89,45 @@ class SaleController extends Controller
     }
 
     public function transactionUpdate(Request $request){
+        try{
+            $file = $request->file('sale_contract_img');
+            $sale_contract_img = $request->sale_contract_img_text;
 
-        DB::table('sale')->where('sale_id', $request->sale_id)->update([
-            'sale_price' => $request->sale_price,
-            'sale_deposit' => $request->sale_deposit,
-            'sale_deposit_date' => $request->sale_deposit_date,
-            'sale_contract_date' => $request->sale_contract_date,
-            'sale_broker' => $request->sale_broker,
-            'sale_legal_person' => $request->sale_legal_person,
-            'sale_contract_img' => $request->sale_contract_img,
-            'sale_style' => $request->sale_style,
-            'sale_created_by'  => Auth::user()->email,
-            'sale_updated_by'  => Auth::user()->email,
-            'sale_created_at'  => Carbon::now(),
-            'sale_updated_at'  => Carbon::now()
-        ]);
+            if( !empty( $file ) ){
+                $file_name = rand().'.'.$file->extension();
+                
+                $upload_path = 'upload'. '/'. 'sale' . '/' . $request->sale_id  . '/';
+                
+                $file->move($upload_path, $file_name);
+    
+                File::delete($sale_contract_img);
 
-        return redirect()->back()->with('success', 'Cập nhật dữ liệu danh sách bán thành công!');
+                $sale_contract_img = $upload_path . $file_name;
+            }
+
+            DB::table('sale')->where('sale_id', $request->sale_id)->update([
+                'sale_price' => $request->sale_price,
+                'sale_deposit' => $request->sale_deposit,
+                'sale_deposit_date' => $request->sale_deposit_date,
+                'sale_contract_date' => $request->sale_contract_date,
+                'sale_broker' => $request->sale_broker,
+                'sale_legal_person' => $request->sale_legal_person,
+                'sale_contract_img' => $sale_contract_img,
+                'sale_style' => $request->sale_style,
+                'sale_created_by'  => Auth::user()->email,
+                'sale_updated_by'  => Auth::user()->email,
+                'sale_created_at'  => Carbon::now(),
+                'sale_updated_at'  => Carbon::now()
+            ]);
+            
+            return redirect()->back()->with('success', 'Cập nhật dữ liệu danh sách bán thành công!');
+           
+        }
+        catch(Exception $e){
+            return Redirect::to(URL::previous() . "#sale-img")->with('success', 'Có lỗi xảy ra!');
+        }
+
+
     }
     
     public function add(Request $request){
@@ -167,7 +190,8 @@ class SaleController extends Controller
         return redirect()->back()->with('success', 'Cập nhật dữ liệu danh sách bán thành công!');
     }
     public function delete(Request $request){
-        return view('admin.sale.raw');
+        DB::table('sale')->where('sale_id',$request->sale_id)->delete();
+        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
     }
     public function status(Request $request){
         DB::table('sale')->where('sale_id', $request->sale_id)->update([

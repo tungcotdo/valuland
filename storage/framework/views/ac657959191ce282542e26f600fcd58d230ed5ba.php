@@ -32,7 +32,7 @@
                                 <a href="<?php echo e(asset('admin/doc/owner-template-upload.xlsx')); ?>"> (tải mẫu)</a>
                             </div>
                             <div class="col-auto validate">
-                                <input class="form-control form-control-sm" type="file" name="owner_upload_excel" id="owner_upload_excel">
+                                <input class="form-control-sm" type="file" name="owner_upload_excel" id="owner_upload_excel">
                                 <small class="error-message text-danger"></small>
                             </div>
                             <div class="col-auto">

@@ -29,22 +29,22 @@
     <div id="flush-collapseOne" class="accordion-collapse collapse show mt-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
         <form class="row g-3" action="{{route('admin.owner.index')}}">
             <div class="col-md-3 validate">
-                <label for="code" class="form-label form-label-sm">Mã căn</label>
+                <label for="code" class="form-label-sm">Mã căn</label>
                 <input type="text" class="form-control form-control-sm" id="code" name="code" value="{{request()->code}}">
                 <small class="error-message text-danger"></small>
             </div>
             <div class="col-md-3 validate">
-                <label for="owner_name" class="form-label form-label-sm">Tên</label>
+                <label for="owner_name" class="form-label-sm">Tên</label>
                 <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="{{request()->owner_name}}">
                 <small class="error-message text-danger"></small>
             </div>
             <div class="col-md-3 validate">
-                <label for="owner_phone" class="form-label form-label-sm">Điện thoại</label>
+                <label for="owner_phone" class="form-label-sm">Điện thoại</label>
                 <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="{{request()->owner_phone}}">
                 <small class="error-message text-danger"></small>
             </div>
             <div class="col-md-3">
-                <label for="owner_demand" class="form-label form-label-sm">Nhu cầu</label>
+                <label for="owner_demand" class="form-label-sm">Nhu cầu</label>
                 <select id="owner_demand" class="form-select form-select-sm w-100" name="owner_demand">
                     <option value="0">Không có</option>
                     <option value="1" {{ request()->owner_demand == 1 ? 'selected' : '' }}>Bán</option>

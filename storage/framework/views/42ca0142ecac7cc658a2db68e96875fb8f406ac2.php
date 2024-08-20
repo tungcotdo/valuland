@@ -26,27 +26,27 @@
                     <div class="row g-3">
                       <div class="col-md-2">
                         <label for="sale_subdivision" class="form-label-sm">Phân khu</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_subdivision" name="sale_subdivision">
+                        <input type="text" class="form-control-sm" id="sale_subdivision" name="sale_subdivision">
                       </div>
                       <div class="col-md-2">
                         <label for="sale_building" class="form-label-sm">Tòa</label>
-                        <input type="email" class="form-control form-control-sm" id="sale_building" name="sale_building">
+                        <input type="email" class="form-control-sm" id="sale_building" name="sale_building">
                       </div>
                       <div class="col-md-2">
                         <label for="code" class="form-label-sm">Mã căn</label>
-                        <input type="email" class="form-control form-control-sm" id="code" value="S102.1821">
+                        <input type="email" class="form-control-sm" id="code" value="S102.1821">
                       </div>
                       <div class="col-md-2">
                         <label for="inputEmail5" class="form-label-sm">Tầng</label>
-                        <input type="email" class="form-control form-control-sm" id="inputEmail5" value="18">
+                        <input type="email" class="form-control-sm" id="inputEmail5" value="18">
                       </div>
                       <div class="col-md-2">
                         <label for="inputEmail5" class="form-label-sm">Căn</label>
-                        <input type="email" class="form-control form-control-sm" id="inputEmail5" value="21">
+                        <input type="email" class="form-control-sm" id="inputEmail5" value="21">
                       </div>
                       <div class="col-md-2">
                         <label for="inputEmail5" class="form-label-sm">Loại căn hộ</label>
-                        <select class="form-control form-control-sm">
+                        <select class="form-control-sm">
                           <option>3PN</option>
                           <option>2PN</option>
                           <option>1PN + 1</option>
@@ -55,7 +55,7 @@
                       </div>
                       <div class="col-md-2">
                         <label for="validationDefault04" class="form-label-sm">Hướng</label>
-                        <select class="form-control form-control-sm">
+                        <select class="form-control-sm">
                           <option>Đông Nam</option>
                           <option>Đông Bắc</option>
                           <option>Tây Nam</option>
@@ -64,11 +64,11 @@
                       </div>
                       <div class="col-md-2">
                         <label for="inputPassword5" class="form-label-sm">DT thông thủy</label>
-                        <input type="text" class="form-control form-control-sm" id="inputPassword5" value="74.80">
+                        <input type="text" class="form-control-sm" id="inputPassword5" value="74.80">
                       </div>
                       <div class="col-md-2">
                         <label for="inputPassword5" class="form-label-sm">Giá bán</label>
-                        <input type="text" class="form-control form-control-sm" id="inputPassword5" value="">
+                        <input type="text" class="form-control-sm" id="inputPassword5" value="">
                       </div>
 
                     </div>
@@ -104,7 +104,7 @@
                                 <form action="#">
                                     <div class="row">
                                         <div class="col-auto">
-                                            <input class="form-control form-control-sm" type="file">
+                                            <input class="form-control-sm" type="file">
                                         </div>
                                         <div class="col-auto">
                                             <a href="raw.html" class="btn btn-primary">Lưu</a>
