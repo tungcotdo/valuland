@@ -58,6 +58,7 @@ class UserController extends Controller
         return view('admin.user.index');
     }
     public function delete(Request $request){
-        return view('admin.user.index');
+        DB::table('users')->where('id', $request->user_id)->delete();
+        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!');
     }
 }
