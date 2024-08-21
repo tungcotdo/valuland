@@ -31,7 +31,11 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::post('sale-load/{sale_id}', ['as' => 'admin.media.sale-load', 'uses' => 'Admin\MediaController@saleLoad']);
         Route::post('sale-upload/{sale_id}', ['as' => 'admin.media.sale-upload', 'uses' => 'Admin\MediaController@saleUpload']);
         Route::post('sale-delete/{sale_img_id}', ['as' => 'admin.media.sale-delete', 'uses' => 'Admin\MediaController@saleDelete']);
-        Route::post('rent-upload/{sale_id}', ['as' => 'admin.media.rent-upload', 'uses' => 'Admin\MediaController@rentUpload']);
+        
+        Route::post('rent-load/{rent_id}', ['as' => 'admin.media.rent-load', 'uses' => 'Admin\MediaController@rentLoad']);
+        Route::post('rent-upload/{rent_id}', ['as' => 'admin.media.rent-upload', 'uses' => 'Admin\MediaController@rentUpload']);
+        Route::post('rent-delete/{rent_img_id}', ['as' => 'admin.media.rent-delete', 'uses' => 'Admin\MediaController@rentDelete']);
+
     });
 
     Route::prefix('owner')->group(function () {
@@ -63,12 +67,18 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     });
 
     Route::prefix('rent')->group(function () {
-        Route::get('index', ['as' => 'admin.rent.index', 'uses' => 'Admin\RentController@index']);
+        Route::get('raw', ['as' => 'admin.rent.raw', 'uses' => 'Admin\RentController@raw']);
+        Route::get('select', ['as' => 'admin.rent.select', 'uses' => 'Admin\RentController@select']);
+        Route::get('transaction', ['as' => 'admin.rent.transaction', 'uses' => 'Admin\RentController@transaction']);
+        Route::get('transaction-edit/{rent_id}', ['as' => 'admin.rent.transaction-edit', 'uses' => 'Admin\RentController@transactionEdit']);
+        Route::post('transaction-update/{rent_id}', ['as' => 'admin.rent.transaction-update', 'uses' => 'Admin\RentController@transactionUpdate']);
+        Route::get('transaction', ['as' => 'admin.rent.transaction', 'uses' => 'Admin\RentController@transaction']);
         Route::get('add', ['as' => 'admin.rent.add', 'uses' => 'Admin\RentController@add']);
         Route::post('store', ['as' => 'admin.rent.store', 'uses' => 'Admin\RentController@store']);
         Route::get('edit/{rent_id}', ['as' => 'admin.rent.edit', 'uses' => 'Admin\RentController@edit']);
         Route::post('update/{rent_id}', ['as' => 'admin.rent.update', 'uses' => 'Admin\RentController@update']);
         Route::get('delete/{rent_id}', ['as' => 'admin.rent.delete', 'uses' => 'Admin\RentController@delete']);
+        Route::get('status/{rent_id}/{rent_status}', ['as' => 'admin.rent.status', 'uses' => 'Admin\RentController@status']);
     });
 
     Route::prefix('contract')->group(function () {
@@ -82,6 +92,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     
     Route::prefix('notification')->group(function () {
         Route::get('index', ['as' => 'admin.notification.index', 'uses' => 'Admin\NotificationController@index']);
+        Route::get('send', ['as' => 'admin.notification.send', 'uses' => 'Admin\NotificationController@send']);
         Route::get('add', ['as' => 'admin.notification.add', 'uses' => 'Admin\NotificationController@add']);
         Route::post('store', ['as' => 'admin.notification.store', 'uses' => 'Admin\NotificationController@store']);
         Route::get('edit/{notification_id}', ['as' => 'admin.notification.edit', 'uses' => 'Admin\NotificationController@edit']);

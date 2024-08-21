@@ -59,8 +59,8 @@
                         <input type="email" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="<?php echo e($sale->sale_floor); ?>">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_stype" class="form-label-sm">Loại căn hộ</label>
-                        <select class="form-control form-control-sm" id="sale_stype" name="sale_stype">
+                        <label for="sale_style" class="form-label-sm">Loại căn hộ</label>
+                        <select class="form-control form-control-sm" id="sale_style" name="sale_style">
                           <?php if( !empty( $house->_STYLE ) ): ?>
                             <?php $__currentLoopData = $house->_STYLE; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <option value="<?php echo e($value); ?>"><?php echo e($text); ?></option>

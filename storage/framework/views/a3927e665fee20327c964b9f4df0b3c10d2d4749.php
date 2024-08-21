@@ -61,22 +61,22 @@
   <!-- Rent nav -->
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#rent-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-key"></i><span>Cho thuê</span><i class="bi bi-chevron-down ms-auto"></i>
+      <i class="bi bi-box-arrow-up"></i><span>Thuê</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="rent-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="<?php echo e(route('admin.sale.raw')); ?>">
-          <i class="bi bi-circle"></i><span>Danh sách sơ</span>
+        <a href="<?php echo e(route('admin.rent.raw')); ?>">
+          <i class="bi bi-circle"></i><span>Danh sách thuê sơ</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.sale.raw')); ?>">
-          <i class="bi bi-circle"></i><span>Danh sách tinh</span>
+        <a href="<?php echo e(route('admin.rent.select')); ?>">
+          <i class="bi bi-circle"></i><span>Danh sách thuê tinh</span>
         </a>
       </li>
       <li>
-        <a href="<?php echo e(route('admin.sale.raw')); ?>">
-          <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
+        <a href="<?php echo e(route('admin.rent.transaction')); ?>">
+          <i class="bi bi-circle"></i><span>Danh sách thuê giao dịch</span>
         </a>
       </li>
     </ul>

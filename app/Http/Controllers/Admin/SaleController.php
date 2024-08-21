@@ -133,8 +133,7 @@ class SaleController extends Controller
     public function add(Request $request){
         return view('admin.sale.add');
     }
-    public function store(Request $request){
-    }
+
     public function edit(Request $request){
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
         return view('admin.sale.edit', ['sale' => $sale, 'house' => new House]);
@@ -147,10 +146,7 @@ class SaleController extends Controller
             'owner_name' => $request->owner_name,
             'owner_phone' => $request->owner_phone,
             'owner_email' => $request->owner_email,
-            'sale_subdivision' => $request->sale_subdivision,
-            'sale_building' => $request->sale_building,
-            'sale_floor' => $request->sale_floor,
-            'sale_stype' => $request->sale_stype,
+            'sale_style' => $request->sale_style,
             'sale_direction' => $request->sale_direction,
             'sale_navigable_area' => $request->sale_navigable_area,
             'sale_price' => $request->sale_price
@@ -169,7 +165,7 @@ class SaleController extends Controller
             'sale_subdivision' => $request->sale_subdivision,
             'sale_building' => $request->sale_building,
             'sale_floor' => $request->sale_floor,
-            'sale_stype' => $request->sale_stype,
+            'sale_style' => $request->sale_style,
             'sale_direction' => $request->sale_direction,
             'sale_navigable_area' => $request->sale_navigable_area,
             'sale_price' => $request->sale_price,

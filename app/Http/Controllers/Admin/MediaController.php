@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\URL;
 class MediaController extends Controller
 {
     public function saleLoad(Request $request){
-        $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
+        $imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
                 
-        $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+        $template = view('admin.partials.sale_img', ['imgs' => $imgs])->render();
 
         return Response()->json(["success" => true, "template" => $template]);
     }
@@ -41,9 +41,9 @@ class MediaController extends Controller
                 ]);
             }
 
-            $sale_imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
+            $imgs = DB::table('sale_img')->where('sale_id', $request->sale_id)->get();
                 
-            $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+            $template = view('admin.partials.sale_img', ['imgs' => $imgs])->render();
 
             return Response()->json(["success" => true, "template" => $template]);
 
@@ -60,30 +60,66 @@ class MediaController extends Controller
         
         DB::table('sale_img')->where('sale_img_id', $request->sale_img_id)->delete();
 
-        $sale_imgs = DB::table('sale_img')->where('sale_id', $sale_img->sale_id)->get();
+        $imgs = DB::table('sale_img')->where('sale_id', $sale_img->sale_id)->get();
                 
-        $template = view('admin.partials.img', ['sale_imgs' => $sale_imgs])->render();
+        $template = view('admin.partials.sale_img', ['imgs' => $imgs])->render();
+
+        return Response()->json(["success" => true, "template" => $template]);
+    }
+
+    public function rentLoad(Request $request){
+        $imgs = DB::table('rent_img')->where('rent_id', $request->rent_id)->get();
+                
+        $template = view('admin.partials.rent_img', ['imgs' => $imgs])->render();
 
         return Response()->json(["success" => true, "template" => $template]);
     }
 
     public function rentUpload(Request $request){
         try{
-            $file = $request->file('file');
+            $files = $request->file('files');
 
-            if( empty( $file ) ){
-                return Response()->json(["success" => false]);
+            foreach( $files as $key => $file ){
+
+                $file_name = rand().'.'.$file->extension();
+                
+                $upload_path = 'upload'. '/'. 'rent' . '/' . $request->rent_id  . '/';
+                
+                $file->move($upload_path, $file_name);
+                
+                DB::table('rent_img')->insert([
+                    'rent_id' => $request->rent_id,
+                    'rent_img_path' => $upload_path . $file_name,
+                    'rent_img_created_at'  => Carbon::now(),
+                    'rent_img_updated_at'  => Carbon::now()
+                ]);
             }
 
-            $file_name = time().'.'.$file->extension();
+            $imgs = DB::table('rent_img')->where('rent_id', $request->rent_id)->get();
+                
+            $template = view('admin.partials.rent_img', ['imgs' => $imgs])->render();
 
-            $file->move('upload'. '/'. 'rent' . '/' . $request->code . '/', $file_name);
+            return Response()->json(["success" => true, "template" => $template]);
 
-            return Response()->json(["success" => true]);
         }
         catch(Exception $e){
-            return Response()->json(["success" => false]);
+            return Redirect::to(URL::previous() . "#rent-img")->with('success', 'Có lỗi xảy ra!');
         }
     }
+
+    public function rentDelete(Request $request){
+        $rent_img = DB::table('rent_img')->where('rent_img_id', $request->rent_img_id)->first();
+        
+        File::delete($rent_img->rent_img_path);
+        
+        DB::table('rent_img')->where('rent_img_id', $request->rent_img_id)->delete();
+
+        $imgs = DB::table('rent_img')->where('rent_id', $rent_img->rent_id)->get();
+                
+        $template = view('admin.partials.rent_img', ['imgs' => $imgs])->render();
+
+        return Response()->json(["success" => true, "template" => $template]);
+    }
+
 
 }

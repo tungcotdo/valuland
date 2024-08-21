@@ -81,7 +81,13 @@
                                     <td><?php echo e($value->sale_broker); ?></td>
                                     <td><?php echo e($value->sale_price); ?></td>
                                     <td><?php echo e($value->sale_legal_person); ?></td>
-                                    <td><a href="<?php echo e(asset($value->sale_contract_img)); ?>" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Xem</a></td>
+                                    <?php if( !empty( $value->sale_contract_img ) ): ?>
+                                      <td><a href="<?php echo e(asset($value->sale_contract_img)); ?>" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Xem</a></td>
+                                    <?php else: ?>
+                                      <td>Chưa có</td>
+                                    <?php endif; ?>
+
+                                    
                                     <td>
                                       <a href="<?php echo e(route('admin.sale.transaction-edit', $value->sale_id)); ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
                                       <a onclick="return confirm('Bạn có muốn dữ liệu không?')" href="<?php echo e(route('admin.sale.delete', $value->sale_id)); ?>" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>

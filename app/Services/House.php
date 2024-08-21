@@ -5,11 +5,11 @@ namespace App\Services;
 class House
 {
     public $_STYLE = [
-        '1' => '1PN',
-        '2' => '2PN',
-        '3' => '1PN',
-        '4' => '1PN',
-        '5' => '1PN',
+        '1' => 'Liền kề',
+        '2' => 'Biệt thự',
+        '3' => 'CC 1PN',
+        '4' => 'CC 2PN',
+        '5' => 'CC 3PN',
     ];
 
     public $_DIRECTION = [

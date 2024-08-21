@@ -4,25 +4,83 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FileExport;
+use App\Imports\FileImport;
+use DB;
+use Carbon\Carbon;
+use Auth;
 
 class NotificationController extends Controller
 {
     public function index(Request $request){
-        return view('admin.notification.index');
+        $query = DB::table('notification');
+
+        if( !empty( $request->notification_title ) ){
+            $query->where( 'notification_title', 'LIKE', '%'.$request->notification_title.'%' );
+        }
+
+        if( !empty( $request->notification_content ) ){
+            $query->where( 'notification_content', 'LIKE', '%'.$request->notification_content.'%' );
+        }
+
+        $compact['notifications'] = $query->get();
+        return view('admin.notification.index', $compact);
+    }
+    public function send(Request $request){
+        return redirect()->back()->with('success', 'Đã gửi thông báo thành công!');
     }
     public function add(Request $request){
-        return view('admin.notification.index');
+        $compact['user_groups'] = DB::table('user_group')->get();
+        return view('admin.notification.add', $compact);
     }
     public function store(Request $request){
-        return view('admin.notification.index');
+        $notification_user = $request->notification_user;
+
+        $notification_user_group_id= array_keys($notification_user);
+
+        DB::table('notification')->insert([
+            'notification_title'  => $request['notification_title'],
+            'notification_content' => $request['notification_content'],
+            'notification_user_group' => implode(', ', $notification_user),
+            'notification_user_group_id' => implode(', ', $notification_user_group_id),
+            'notification_created_by'  => Auth::user()->email,
+            'notification_updated_by'  => Auth::user()->email,
+            'notification_created_at'  => Carbon::now(),
+            'notification_updated_at'  => Carbon::now(),
+            'notification_issend'  => (bool)!empty( $request['notification_issend'] ),
+        ]);
+        return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){
-        return view('admin.notification.index');
+        $compact['notification'] = DB::table('notification')->where('notification_id', $request->notification_id)->first();
+        if( !empty( $compact['notification'] ) ){
+            $compact['notification_user'] = explode(', ', $compact['notification']->notification_user_group_id);
+            $compact['user_groups'] = DB::table('user_group')->get();
+            return view('admin.notification.edit', $compact);
+        }
+        return route('admin.notification.index');
     }
     public function update(Request $request){
-        return view('admin.notification.index');
+        $notification_user = $request->notification_user;
+
+        $notification_user_group_id= array_keys($notification_user);
+
+        DB::table('notification')->where('notification_id', $request->notification_id)->update([
+            'notification_title'  => $request['notification_title'],
+            'notification_content' => $request['notification_content'],
+            'notification_user_group' => implode(', ', $notification_user),
+            'notification_user_group_id' => implode(', ', $notification_user_group_id),
+            'notification_created_by'  => Auth::user()->email,
+            'notification_updated_by'  => Auth::user()->email,
+            'notification_created_at'  => Carbon::now(),
+            'notification_updated_at'  => Carbon::now(),
+            'notification_issend'  => (bool)!empty( $request['notification_issend'] ),
+        ]);
+        return redirect()->back()->with('success', 'Cập nhật dữ liệu thành công!');
     }
     public function delete(Request $request){
-        return view('admin.notification.index');
+        DB::table('notification')->where('notification_id', $request->notification_id)->delete();
+        return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
     }
 }

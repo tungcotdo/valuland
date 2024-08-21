@@ -59,8 +59,8 @@
                         <input type="email" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="{{$sale->sale_floor}}">
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_stype" class="form-label-sm">Loại căn hộ</label>
-                        <select class="form-control form-control-sm" id="sale_stype" name="sale_stype">
+                        <label for="sale_style" class="form-label-sm">Loại căn hộ</label>
+                        <select class="form-control form-control-sm" id="sale_style" name="sale_style">
                           @if( !empty( $house->_STYLE ) )
                             @foreach( $house->_STYLE as $value => $text )
                               <option value="{{ $value }}">{{ $text }}</option>

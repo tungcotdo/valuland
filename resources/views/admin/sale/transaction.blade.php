@@ -81,7 +81,13 @@
                                     <td>{{$value->sale_broker}}</td>
                                     <td>{{$value->sale_price}}</td>
                                     <td>{{$value->sale_legal_person}}</td>
-                                    <td><a href="{{asset($value->sale_contract_img)}}" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Xem</a></td>
+                                    @if( !empty( $value->sale_contract_img ) )
+                                      <td><a href="{{asset($value->sale_contract_img)}}" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Xem</a></td>
+                                    @else
+                                      <td>Chưa có</td>
+                                    @endif
+
+                                    
                                     <td>
                                       <a href="{{route('admin.sale.transaction-edit', $value->sale_id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
                                       <a onclick="return confirm('Bạn có muốn dữ liệu không?')" href="{{route('admin.sale.delete', $value->sale_id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
