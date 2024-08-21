@@ -71,9 +71,9 @@
                                 <td><?php echo e($value->notification_title); ?></td>
                                 <td><?php echo e($value->notification_content); ?></td>
                                 <td><?php echo e($value->notification_user_group); ?></td>
-                                <td><?php echo e(!empty( $value->notification_issend ) ? 'Chưa gửi' : 'Đã gửi'); ?></td>
+                                <td><?php echo e(!empty( $value->notification_issend ) ? 'Đã gửi' : 'Chưa gửi'); ?></td>
                                 <td>
-                                    <a href="<?php echo e(route('admin.notification.send')); ?>" class="btn btn-sm btn-success"><i class="bi bi-send"></i> Gửi</a>
+                                    <a href="<?php echo e(route('admin.notification.send', ['notification_id' => $value->notification_id, 'notification_issend' => 1])); ?>" class="btn btn-sm btn-success"><i class="bi bi-send"></i> Gửi</a>
                                     <a href="<?php echo e(route('admin.notification.edit', $value->notification_id)); ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Sửa</a>
                                     <a onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" href="<?php echo e(route('admin.notification.delete', $value->notification_id)); ?>" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa</a>
                                 </td>

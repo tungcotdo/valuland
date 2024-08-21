@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     
     Route::prefix('notification')->group(function () {
         Route::get('index', ['as' => 'admin.notification.index', 'uses' => 'Admin\NotificationController@index']);
-        Route::get('send', ['as' => 'admin.notification.send', 'uses' => 'Admin\NotificationController@send']);
+        Route::get('send/{notification_id}/{notification_issend}', ['as' => 'admin.notification.send', 'uses' => 'Admin\NotificationController@send']);
         Route::get('add', ['as' => 'admin.notification.add', 'uses' => 'Admin\NotificationController@add']);
         Route::post('store', ['as' => 'admin.notification.store', 'uses' => 'Admin\NotificationController@store']);
         Route::get('edit/{notification_id}', ['as' => 'admin.notification.edit', 'uses' => 'Admin\NotificationController@edit']);

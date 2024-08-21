@@ -28,6 +28,9 @@ class NotificationController extends Controller
         return view('admin.notification.index', $compact);
     }
     public function send(Request $request){
+        DB::table('notification')->where('notification_id', $request->notification_id)->update([
+            'notification_issend'  => (bool)!empty( $request->notification_issend ),
+        ]);
         return redirect()->back()->with('success', 'Đã gửi thông báo thành công!');
     }
     public function add(Request $request){
