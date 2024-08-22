@@ -61,7 +61,7 @@ class AuthorizationController extends Controller
         return redirect()->back()->with('success', 'Sửa dữ liệu thành công!');
     }
     public function delete(Request $request){
-        DB::table('users')->where('id', $request->user_id)->delete();
+        DB::table('user_group')->where('user_group_id', $request->authorization_id)->delete();
         return redirect()->back()->with('success', 'Xoá dữ liệu thành công!');
     }
 }
