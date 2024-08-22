@@ -37,6 +37,12 @@ class UserController extends Controller
         return view('admin.user.add', $compact);
     }
     public function store(Request $request){
+        $isEmail = DB::table('users')->where('email', $request['user_email'])->first();
+
+        if( !empty( $isEmail ) ){
+            return redirect()->back()->with('error', 'Email đã tồn tại!');
+        }
+
         $user_group = explode( '_', $request->user_group );
         
         DB::table('users')->insert([
@@ -52,10 +58,26 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){
-        return view('admin.user.index');
+        $compact['user'] = DB::table('users')->where('id', $request->user_id)->first();
+        $compact['user_groups'] = DB::table('user_group')->get();
+        return view('admin.user.edit', $compact);
     }
     public function update(Request $request){
-        return view('admin.user.index');
+        $user_group = explode( '_', $request->user_group );
+
+        $param['name']  = $request['user_name'];
+        $param['email'] = $request['user_email'];
+        $param['phone'] = $request['user_phone'];
+        $param['user_group_id'] = $user_group[0];
+        $param['user_group_name'] = $user_group[1];
+        $param['updated_at']  = Carbon::now();
+
+        if( !empty( $request['user_password'] ) ){
+            $param['password'] = bcrypt($request['user_password']);
+        }
+        
+        DB::table('users')->where('id', $request->user_id)->update($param);
+        return redirect()->back()->with('success', 'Sửa dữ liệu thành công!');
     }
     public function delete(Request $request){
         DB::table('users')->where('id', $request->user_id)->delete();

@@ -126,13 +126,27 @@
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
+    </ul>
+  </li><!-- End user nav -->
+
+    <!-- Authorized nav -->
+    <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#authorization-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-person"></i><span>Người dùng</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="authorization-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="{{route('admin.user.index')}}">
-          <i class="bi bi-circle"></i><span>Phân quyền</span>
+        <a href="{{route('admin.authorization.index')}}">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('admin.authorization.add')}}">
+          <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
     </ul>
-  </li><!-- End user nav -->
+  </li><!-- End Authorized nav -->
   
 
 </ul>

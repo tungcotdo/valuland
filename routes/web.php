@@ -108,5 +108,14 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::post('update/{user_id}', ['as' => 'admin.user.update', 'uses' => 'Admin\UserController@update']);
         Route::get('delete/{user_id}', ['as' => 'admin.user.delete', 'uses' => 'Admin\UserController@delete']);
     });
+
+    Route::prefix('authorization')->group(function () {
+        Route::get('index', ['as' => 'admin.authorization.index', 'uses' => 'Admin\AuthorizationController@index']);
+        Route::get('add', ['as' => 'admin.authorization.add', 'uses' => 'Admin\AuthorizationController@add']);
+        Route::post('store', ['as' => 'admin.authorization.store', 'uses' => 'Admin\AuthorizationController@store']);
+        Route::get('edit/{authorization_id}', ['as' => 'admin.authorization.edit', 'uses' => 'Admin\AuthorizationController@edit']);
+        Route::post('update/{authorization_id}', ['as' => 'admin.authorization.update', 'uses' => 'Admin\AuthorizationController@update']);
+        Route::get('delete/{authorization_id}', ['as' => 'admin.authorization.delete', 'uses' => 'Admin\AuthorizationController@delete']);
+    });
 });
 

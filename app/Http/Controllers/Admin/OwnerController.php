@@ -130,7 +130,7 @@ class OwnerController extends Controller
                 'owner_name'  => $request['owner_name'],
                 'owner_phone' => $request['owner_phone'],
                 'owner_email' => $request['owner_email'],
-                'code'  => $request['code'],
+                'code' => $request['code'],
                 'owner_created_by'  => Auth::user()->email,
                 'owner_updated_by'  => Auth::user()->email,
                 'owner_created_at'  => Carbon::now(),
@@ -187,7 +187,6 @@ class OwnerController extends Controller
                 'sale_created_at'  => Carbon::now(),
                 'sale_updated_at'  => Carbon::now()
             ]);
-            DB::table('owner')->where('owner_id', $request->owner_id)->delete();
             return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách bán thành công!');
         }elseif( $request['owner_demand'] == 2 ){
             DB::table('rent')->insert([
@@ -201,7 +200,6 @@ class OwnerController extends Controller
                 'rent_created_at'  => Carbon::now(),
                 'rent_updated_at'  => Carbon::now()
             ]);
-            DB::table('owner')->where('owner_id', $request->owner_id)->delete();
             return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
         }
     }
