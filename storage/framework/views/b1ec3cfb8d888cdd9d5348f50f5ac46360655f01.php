@@ -47,130 +47,45 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item dropdown">
+        <?php if( !empty( $_notifications ) ): ?>
+          <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-danger badge-number">4</span>
-          </a><!-- End Notification Icon -->
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-bell"></i>
+              <span class="badge bg-danger badge-number"><?php echo e(count($_notifications)); ?></span>
+            </a><!-- End Notification Icon -->
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              Bạn có 2 thông báo
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+              <li class="dropdown-header">
+                Bạn có <?php echo e(count($_notifications)); ?> thông báo
+                <a href="<?php echo e(route('admin.notification.index')); ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-              <div>
-                <h4>S102.1821 hết hạn thuê</h4>
-                <p>Hạn 01/08/2024</p>
-                <p>Còn 7 ngày</p>
-              </div>
-            </li>
+              
+                <?php $__currentLoopData = $_notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li class="notification-item">
+                  <i class="bi bi-exclamation-circle text-warning text-danger"></i>
+                  <div>
+                    <h4><?php echo e($value->notification_title); ?></h4>
+                    <p><?php echo e($value->notification_content); ?></p>
+                  </div>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              
+              <li class="dropdown-footer">
+                <a href="<?php echo e(route('admin.notification.index')); ?>">Xem tất cả các thông báo</a>
+              </li>
+            </ul><!-- End Notification Dropdown Items -->
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>S102.1822 cập nhật giá bán</h4>
-                <p>Cũ 3 tỷ</p>
-                <p>Mới 3.2 tỷ</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-              <div>
-                <h4>S102.1821 hết hạn thuê</h4>
-                <p>Hạn 01/08/2024</p>
-                <p>Còn 7 ngày</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>S102.1822 cập nhật giá bán</h4>
-                <p>Cũ 3 tỷ</p>
-                <p>Mới 3.2 tỷ</p>
-              </div>
-            </li>
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-              <div>
-                <h4>S102.1821 hết hạn thuê</h4>
-                <p>Hạn 01/08/2024</p>
-                <p>Còn 7 ngày</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>S102.1822 cập nhật giá bán</h4>
-                <p>Cũ 3 tỷ</p>
-                <p>Mới 3.2 tỷ</p>
-              </div>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>S102.1822 cập nhật giá bán</h4>
-                <p>Cũ 3 tỷ</p>
-                <p>Mới 3.2 tỷ</p>
-              </div>
-            </li>
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-              <div>
-                <h4>S102.1821 hết hạn thuê</h4>
-                <p>Hạn 01/08/2024</p>
-                <p>Còn 7 ngày</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>S102.1822 cập nhật giá bán</h4>
-                <p>Cũ 3 tỷ</p>
-                <p>Mới 3.2 tỷ</p>
-              </div>
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Xem tất cả các thông báo</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
+          </li><!-- End Notification Nav -->
+        <?php endif; ?>
+        
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

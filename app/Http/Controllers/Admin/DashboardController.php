@@ -10,6 +10,7 @@ use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index(){
+        $this->authorization(1);
         $user = DB::table('users')->where('id', 1)->first();
         // dd(Carbon::parse($user->created_at)->diffForHumans());
         return view('admin.dashboard.index');

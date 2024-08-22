@@ -51,7 +51,7 @@
                     <div class="row">
                       <?php if( !empty( $user_groups ) ): ?>
                         <?php $__currentLoopData = $user_groups; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <input class="form-check-input" type="radio" name="user_group" id="gridRadios_<?php echo e($value->user_group_id); ?>" value="<?php echo e($value->user_group_id); ?>_<?php echo e($value->user_group_name); ?>">
                           <label class="form-check-label" for="gridRadios_<?php echo e($value->user_group_id); ?>">
                             <?php echo e($value->user_group_name); ?>

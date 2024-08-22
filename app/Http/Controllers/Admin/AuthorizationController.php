@@ -14,47 +14,28 @@ use Auth;
 class AuthorizationController extends Controller
 {
     public function index(Request $request){
-        $query = DB::table('users');
-
-        if( !empty( $request->name ) ){
-            $query->where( 'name', 'LIKE', '%'.$request->name.'%' );
-        }
-
-        if( !empty( $request->email ) ){
-            $query->where( 'email', 'LIKE', '%'.$request->email.'%' );
-        }
-
-        if( !empty( $request->user_phone ) ){
-            $query->where( 'phone', 'LIKE', '%'.$request->user_phone.'%' );
-        }
-
-        $compact['users'] = $query->get();
         $compact['user_groups'] = DB::table('user_group')->get();
         return view('admin.authorization.index', $compact);
     }
     public function add(Request $request){
-        $compact['user_groups'] = DB::table('user_group')->get();
+        $compact['functions'] = DB::table('function')->get();
         return view('admin.authorization.add', $compact);
     }
     public function store(Request $request){
-        $isEmail = DB::table('users')->where('email', $request['user_email'])->first();
-
-        if( !empty( $isEmail ) ){
-            return redirect()->back()->with('error', 'Email đã tồn tại!');
-        }
-
-        $user_group = explode( '_', $request->user_group );
-        
-        DB::table('users')->insert([
-            'name'  => $request['user_name'],
-            'email' => $request['user_email'],
-            'password' => bcrypt($request['user_password']),
-            'phone' => $request['user_phone'],
-            'user_group_id' => $user_group[0],
-            'user_group_name' => $user_group[1],
-            'created_at'  => Carbon::now(),
-            'updated_at'  => Carbon::now()
+        $user_group_id = DB::table('user_group')->insertGetId([
+            'user_group_name'  => $request['user_group_name'],
+            'user_group_description' => $request['user_group_description'],
+            'user_group_created_at'  => Carbon::now(),
+            'user_group_updated_at'  => Carbon::now()
         ]);
+
+        $function_select = implode(',', $request['function_select']);
+
+        DB::table('user_group_function')->insert([
+            'user_group_id'  => $user_group_id,
+            'function_id' => $function_select
+        ]);
+
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){

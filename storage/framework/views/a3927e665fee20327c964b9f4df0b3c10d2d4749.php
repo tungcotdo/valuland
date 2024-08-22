@@ -126,13 +126,27 @@
           <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
+    </ul>
+  </li><!-- End user nav -->
+
+    <!-- Authorized nav -->
+    <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#authorization-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-lock"></i><span>Quyền truy cập</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="authorization-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="<?php echo e(route('admin.user.index')); ?>">
-          <i class="bi bi-circle"></i><span>Phân quyền</span>
+        <a href="<?php echo e(route('admin.authorization.index')); ?>">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo e(route('admin.authorization.add')); ?>">
+          <i class="bi bi-circle"></i><span>Thêm mới</span>
         </a>
       </li>
     </ul>
-  </li><!-- End user nav -->
+  </li><!-- End Authorized nav -->
   
 
 </ul>

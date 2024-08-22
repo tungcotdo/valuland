@@ -74,7 +74,7 @@
                                 <td>{{ $value->notification_user_group }}</td>
                                 <td>{{ !empty( $value->notification_issend ) ? 'Đã gửi' : 'Chưa gửi' }}</td>
                                 <td>
-                                    <a href="{{ route('admin.notification.send', ['notification_id' => $value->notification_id, 'notification_issend' => 1]) }}" class="btn btn-sm btn-success"><i class="bi bi-send"></i> Gửi</a>
+                                    <a href="{{ route('admin.notification.send', ['notification_id' => $value->notification_id, 'notification_issend' => 1]) }}" class="btn btn-sm btn-success"><i class="bi bi-send"></i> {{ ($value->notification_issend == 1) ? "Gửi lại" : "Gửi" }}</a>
                                     <a href="{{ route('admin.notification.edit', $value->notification_id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Sửa</a>
                                     <a onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" href="{{ route('admin.notification.delete', $value->notification_id) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa</a>
                                 </td>

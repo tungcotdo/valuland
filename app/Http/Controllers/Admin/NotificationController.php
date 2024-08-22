@@ -13,6 +13,8 @@ use Auth;
 
 class NotificationController extends Controller
 {
+
+
     public function index(Request $request){
         $query = DB::table('notification');
 
@@ -28,11 +30,38 @@ class NotificationController extends Controller
         return view('admin.notification.index', $compact);
     }
     public function send(Request $request){
-        DB::table('notification')->where('notification_id', $request->notification_id)->update([
-            'notification_issend'  => (bool)!empty( $request->notification_issend ),
-        ]);
-        return redirect()->back()->with('success', 'Đã gửi thông báo thành công!');
+        $notification = DB::table('notification')->where('notification_id', $request->notification_id)->first();
+
+        if( !empty( $notification->notification_user_group_id ) ){
+            $notification_user_group_id = explode(',', $notification->notification_user_group_id);
+
+            $users = DB::table('users')->whereIn('user_group_id', $notification_user_group_id)->get();
+
+            $notification_issend = (bool)!empty( $request['notification_issend'] );
+
+            DB::table('notification')->where('notification_id', $request->notification_id)->update([
+                'notification_issend'  => $notification_issend,
+            ]);
+
+            foreach( $users as $value ){
+                DB::table('notification_user')->where([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $request->notification_id,
+                ])->delete();
+
+                DB::table('notification_user')->insert([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $request->notification_id,
+                    'status' => 0
+                ]);
+            }
+
+            return redirect()->back()->with('success', 'Đã gửi thông báo thành công!');
+        }
+        
+        return redirect()->back()->with('error', 'Có lỗi xảy ra!');
     }
+
     public function add(Request $request){
         $compact['user_groups'] = DB::table('user_group')->get();
         return view('admin.notification.add', $compact);
@@ -42,23 +71,42 @@ class NotificationController extends Controller
 
         $notification_user_group_id= array_keys($notification_user);
 
-        DB::table('notification')->insert([
+        $notification_issend = (bool)!empty( $request['notification_issend'] );
+
+        $notification_id = DB::table('notification')->insertGetId([
             'notification_title'  => $request['notification_title'],
             'notification_content' => $request['notification_content'],
-            'notification_user_group' => implode(', ', $notification_user),
-            'notification_user_group_id' => implode(', ', $notification_user_group_id),
+            'notification_user_group' => implode(',', $notification_user),
+            'notification_user_group_id' => implode(',', $notification_user_group_id),
             'notification_created_by'  => Auth::user()->email,
             'notification_updated_by'  => Auth::user()->email,
             'notification_created_at'  => Carbon::now(),
             'notification_updated_at'  => Carbon::now(),
-            'notification_issend'  => (bool)!empty( $request['notification_issend'] ),
+            'notification_issend'  => $notification_issend,
         ]);
+
+        if( $notification_issend ){
+            $users = DB::table('user')->whereIn('user_group_id', $notification_user_group_id)->get();
+        
+            foreach( $users as $value ){
+                DB::table('notification_user')->where([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $notification_id,
+                ])->delete();
+
+                DB::table('notification_user')->insert([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $notification_id,
+                ]);
+            }
+        }
+
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){
         $compact['notification'] = DB::table('notification')->where('notification_id', $request->notification_id)->first();
         if( !empty( $compact['notification'] ) ){
-            $compact['notification_user'] = explode(', ', $compact['notification']->notification_user_group_id);
+            $compact['notification_user'] = explode(',', $compact['notification']->notification_user_group_id);
             $compact['user_groups'] = DB::table('user_group')->get();
             return view('admin.notification.edit', $compact);
         }
@@ -69,17 +117,37 @@ class NotificationController extends Controller
 
         $notification_user_group_id= array_keys($notification_user);
 
+        $notification_issend = (bool)!empty( $request['notification_issend'] );
+
         DB::table('notification')->where('notification_id', $request->notification_id)->update([
             'notification_title'  => $request['notification_title'],
             'notification_content' => $request['notification_content'],
-            'notification_user_group' => implode(', ', $notification_user),
-            'notification_user_group_id' => implode(', ', $notification_user_group_id),
+            'notification_user_group' => implode(',', $notification_user),
+            'notification_user_group_id' => implode(',', $notification_user_group_id),
             'notification_created_by'  => Auth::user()->email,
             'notification_updated_by'  => Auth::user()->email,
             'notification_created_at'  => Carbon::now(),
             'notification_updated_at'  => Carbon::now(),
-            'notification_issend'  => (bool)!empty( $request['notification_issend'] ),
+            'notification_issend'  => $notification_issend,
         ]);
+
+        if( $notification_issend ){
+            $users = DB::table('users')->whereIn('user_group_id', $notification_user_group_id)->get();
+
+            foreach( $users as $value ){
+                DB::table('notification_user')->where([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $request->notification_id,
+                ])->delete();
+
+                DB::table('notification_user')->insert([
+                    'user_id'  => $value->id,
+                    'notification_id'  => $request->notification_id,
+                    'status' => 0
+                ]);
+            }
+        }
+
         return redirect()->back()->with('success', 'Cập nhật dữ liệu thành công!');
     }
     public function delete(Request $request){

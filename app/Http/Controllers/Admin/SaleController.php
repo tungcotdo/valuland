@@ -11,7 +11,7 @@ use DB;
 use Carbon\Carbon;
 use Auth;
 use App\Services\House;
-use Validator,Response,File;
+use Validator,Response,File, Route;
 
 class SaleController extends Controller
 {

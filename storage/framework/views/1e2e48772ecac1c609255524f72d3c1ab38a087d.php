@@ -4,6 +4,7 @@
       <h1>Form sửa thông báo</h1>
       <nav>
         <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
           <li class="breadcrumb-item"><a href="<?php echo e(route('admin.notification.index')); ?>">Thông báo</a></li>
           <li class="breadcrumb-item active">Sửa</li>
         </ol>

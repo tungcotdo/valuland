@@ -51,7 +51,7 @@
                     <div class="row">
                       @if( !empty( $user_groups ) )
                         @foreach( $user_groups as $value )
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                           <input {{ ( $value->user_group_id == $user->user_group_id ) ? 'checked' : '' }} class="form-check-input" type="radio" name="user_group" id="gridRadios_{{$value->user_group_id}}" value="{{$value->user_group_id}}_{{$value->user_group_name}}">
                           <label class="form-check-label" for="gridRadios_{{$value->user_group_id}}">
                             {{$value->user_group_name}}
