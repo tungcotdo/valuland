@@ -4,7 +4,7 @@
         <h1>Danh sách thuê tinh</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">Trang chủ</a></li>
             <li class="breadcrumb-item active">Danh sách thuê tinh</li>
           </ol>
         </nav>
