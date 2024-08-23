@@ -52,11 +52,11 @@
                       </div>
                       <div class="col-md-4">
                         <label for="rent_building" class="form-label-sm">Tòa</label>
-                        <input type="email" class="form-control form-control-sm" id="rent_building" name="rent_building" value="{{$rent->rent_building}}">
+                        <input type="text" class="form-control form-control-sm" id="rent_building" name="rent_building" value="{{$rent->rent_building}}">
                       </div>
                       <div class="col-md-4">
                         <label for="rent_floor" class="form-label-sm">Tầng</label>
-                        <input type="email" class="form-control form-control-sm" id="rent_floor" name="rent_floor" value="{{$rent->rent_floor}}">
+                        <input type="text" class="form-control form-control-sm" id="rent_floor" name="rent_floor" value="{{$rent->rent_floor}}">
                       </div>
                       <div class="col-md-4">
                         <label for="rent_style" class="form-label-sm">Loại căn hộ</label>
