@@ -28,22 +28,22 @@
                   <div class="row g-3">
                       <div class="col-md-6 validate">
                         <label for="code" class="form-label-sm">Mã căn <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control-sm" id="code" name="code">
+                        <input type="text" class="form-control form-control-sm" id="code" name="code">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
                         <label for="owner_name" class="form-label-sm">Tên chủ hộ <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control-sm" id="owner_name" name="owner_name">
+                        <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
                         <label for="owner_email" class="form-label-sm">Email chủ hộ (Ngăn cách bằng dấu ;) <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control-sm" id="owner_email" name="owner_email">
+                        <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6 validate">
                         <label for="owner_phone" class="form-label-sm">Điện thoại chủ hộ <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control-sm" id="owner_phone" name="owner_phone">
+                        <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone">
                         <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6">

@@ -41,21 +41,19 @@ class OwnerController extends Controller
     }
 
     public function store(Request $request){
-        if( empty( $request['owner_demand'] ) ){
-            DB::table('owner')->insert([
-                'owner_name'  => $request['owner_name'],
-                'owner_phone' => $request['owner_phone'],
-                'owner_email' => $request['owner_email'],
-                'code'  => $request['code'],
-                'owner_created_by'  => Auth::user()->email,
-                'owner_updated_by'  => Auth::user()->email,
-                'owner_created_at'  => Carbon::now(),
-                'owner_updated_at'  => Carbon::now()
-            ]);
+        DB::table('owner')->insert([
+            'owner_name'  => $request['owner_name'],
+            'owner_phone' => $request['owner_phone'],
+            'owner_email' => $request['owner_email'],
+            'owner_demand' => $request['owner_demand'],
+            'code'  => $request['code'],
+            'owner_created_by'  => Auth::user()->email,
+            'owner_updated_by'  => Auth::user()->email,
+            'owner_created_at'  => Carbon::now(),
+            'owner_updated_at'  => Carbon::now()
+        ]);
 
-            return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách chủ nhà thành công!'); 
-
-        }elseif( $request['owner_demand'] == 1 ){
+        if( $request['owner_demand'] == 1 ){
             DB::table('sale')->insert([
                 'sale_status' => 1,
                 'owner_name'  => $request['owner_name'],
@@ -86,7 +84,7 @@ class OwnerController extends Controller
             return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
         }
 
-        return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng kiểm tra lại!');
+        return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách chủ nhà thành công!'); 
     }
     
     public function formUploadExcel(Request $request){
@@ -125,21 +123,19 @@ class OwnerController extends Controller
         return view('admin.owner.edit', ['owner' => $owner]);
     }
     public function update(Request $request){
-        if( empty( $request['owner_demand'] ) ){
-            DB::table('owner')->where('owner_id', $request->owner_id)->update([
-                'owner_name'  => $request['owner_name'],
-                'owner_phone' => $request['owner_phone'],
-                'owner_email' => $request['owner_email'],
-                'code' => $request['code'],
-                'owner_created_by'  => Auth::user()->email,
-                'owner_updated_by'  => Auth::user()->email,
-                'owner_created_at'  => Carbon::now(),
-                'owner_updated_at'  => Carbon::now()
-            ]);
+        DB::table('owner')->where('owner_id', $request->owner_id)->update([
+            'owner_name'  => $request['owner_name'],
+            'owner_phone' => $request['owner_phone'],
+            'owner_email' => $request['owner_email'],
+            'owner_demand' => $request['owner_demand'],
+            'code' => $request['code'],
+            'owner_created_by'  => Auth::user()->email,
+            'owner_updated_by'  => Auth::user()->email,
+            'owner_created_at'  => Carbon::now(),
+            'owner_updated_at'  => Carbon::now()
+        ]);
 
-            return redirect()->back()->with('success', 'Sửa thông tin chủ nhà thành công!'); 
-
-        }elseif( $request['owner_demand'] == 1 ){
+        if( $request['owner_demand'] == 1 ){
             DB::table('sale')->insert([
                 'sale_status' => 1,
                 'owner_name'  => $request['owner_name'],
@@ -170,11 +166,24 @@ class OwnerController extends Controller
             return redirect()->back()->with('success', 'Thêm dữ liệu vào danh sách cho thuê thành công!');
         }
 
-        return redirect()->back()->with('error', 'Có lỗi xảy ra, vui lòng kiểm tra lại!');
+        return redirect()->back()->with('success', 'Sửa thông tin chủ nhà thành công!'); 
     }
 
     public function updateDemand(Request $request){
         $owner = (array)DB::table('owner')->where('owner_id', $request->owner_id)->first();
+        
+        DB::table('owner')->where('owner_id', $request->owner_id)->update([
+            'owner_name'  => $owner['owner_name'],
+            'owner_phone' => $owner['owner_phone'],
+            'owner_email' => $owner['owner_email'],
+            'owner_demand' => $request['owner_demand'],
+            'code' => $owner['code'],
+            'owner_created_by'  => Auth::user()->email,
+            'owner_updated_by'  => Auth::user()->email,
+            'owner_created_at'  => Carbon::now(),
+            'owner_updated_at'  => Carbon::now()
+        ]);
+
         if( $request['owner_demand'] == 1 ){
             DB::table('sale')->insert([
                 'sale_status' => 1,

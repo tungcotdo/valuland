@@ -36,23 +36,23 @@
 
   <!-- Sale nav -->
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#sale-nav" data-bs-toggle="collapse" href="#">
+    <a class="nav-link" data-bs-target="#sale-nav" data-bs-toggle="collapse" href="#" aria-expanded="true">
       <i class="bi bi-box-arrow-up"></i><span>Bán</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="sale-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="sale-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
       <li>
         <a href="{{route('admin.sale.raw')}}">
-          <i class="bi bi-circle"></i><span>Danh sách bán sơ</span>
+          <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.sale.select')}}">
-          <i class="bi bi-circle"></i><span>Danh sách bán tinh</span>
+          <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.sale.transaction')}}">
-          <i class="bi bi-circle"></i><span>Danh sách bán giao dịch</span>
+          <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>
     </ul>
@@ -60,23 +60,23 @@
 
   <!-- Rent nav -->
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#rent-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-box-arrow-up"></i><span>Thuê</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link collapsed" data-bs-target="#rent-nav" data-bs-toggle="collapse" href="#" aria-expanded="true">
+      <i class="bi bi-arrow-left-right"></i><span>Thuê</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-    <ul id="rent-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <ul id="rent-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
       <li>
         <a href="{{route('admin.rent.raw')}}">
-          <i class="bi bi-circle"></i><span>Danh sách thuê sơ</span>
+          <i class="bi bi-circle"></i><span>Danh sách sơ</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.rent.select')}}">
-          <i class="bi bi-circle"></i><span>Danh sách thuê tinh</span>
+          <i class="bi bi-circle"></i><span>Danh sách tinh</span>
         </a>
       </li>
       <li>
         <a href="{{route('admin.rent.transaction')}}">
-          <i class="bi bi-circle"></i><span>Danh sách thuê giao dịch</span>
+          <i class="bi bi-circle"></i><span>Danh sách giao dịch</span>
         </a>
       </li>
     </ul>
@@ -104,11 +104,22 @@
 
   <!-- Contract nav -->
   <li class="nav-item">
-    <a class="nav-link " href="{{route('admin.contract.index')}}">
-      <i class="bi bi-journal-text"></i>
-      <span>Hợp đồng</span>
+    <a class="nav-link collapsed" data-bs-target="#contract-nav" data-bs-toggle="collapse" href="{{route('admin.contract.index')}}">
+      <i class="bi bi-journal-text"></i><span>Hợp đồng</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
-  </li><!-- End Contract Nav -->
+    <ul id="contract-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="{{route('admin.contract.index')}}">
+          <i class="bi bi-circle"></i><span>Danh sách</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('admin.contract.add')}}">
+          <i class="bi bi-circle"></i><span>Thêm mới</span>
+        </a>
+      </li>
+    </ul>
+  </li><!-- End contract nav -->
 
   <!-- User nav -->
   <li class="nav-item">

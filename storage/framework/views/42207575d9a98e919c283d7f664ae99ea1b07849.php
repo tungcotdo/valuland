@@ -15,7 +15,7 @@
   <a href="<?php echo e(route('admin.owner.form-upload-excel')); ?>" class="btn btn-sm btn-success"><i class="bi bi-upload"></i> Tải file excel</a>
   <a href="<?php echo e(route('admin.owner.add')); ?>" class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Thêm mới</a>
   <a href="<?php echo e(route('admin.owner.truncate')); ?>" onclick="return confirm('Bạn có muốn xóa hết dữ liệu không?')" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa hết dữ liệu</a>
-  <a href="#" class="btn btn-sm btn-warning disabled"><i class="bi bi-download"></i> Xuất file excel</a>
+  <!-- <a href="#" class="btn btn-sm btn-warning disabled"><i class="bi bi-download"></i> Xuất file excel</a> -->
 </div>
 
 <!-- Filter -->
@@ -90,17 +90,17 @@
                 <tbody>
                     <?php $__currentLoopData = $owners; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <th><?php echo e($value->code); ?></th>
-                            <td><?php echo e($value->owner_name); ?></td>
-                            <td><?php echo e($value->owner_phone); ?></td>
-                            <td>
+                            <td style="border-bottom: 1px solid #f3f3f3;"><?php echo e($value->code); ?></td>
+                            <td style="border-bottom: 1px solid #f3f3f3; max-width: 300px; overflow-x: auto;"><?php echo e($value->owner_name); ?></td>
+                            <td style="border-bottom: 1px solid #f3f3f3; max-width: 300px; overflow-x: auto;"><?php echo e($value->owner_phone); ?></td>
+                            <td style="border-bottom: 1px solid #f3f3f3; min-width: 100px;">
                                 <select class="form-control form-control-sm owner-demand-slb">
                                     <option value="0">Không có</option>
-                                    <option value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 1])); ?>" >Bán</option>
-                                    <option value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 2])); ?>">Thuê</option>
+                                    <option <?php echo e($value->owner_demand == 1 ? 'selected' : ''); ?> value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 1])); ?>" >Bán</option>
+                                    <option <?php echo e($value->owner_demand == 2 ? 'selected' : ''); ?> value="<?php echo e(route('admin.owner.update-demand', [$value->owner_id, 2])); ?>">Thuê</option>
                                 </select>
                             </td>
-                            <td>
+                            <td style="border-bottom: 1px solid #f3f3f3;">
                                 <a href="<?php echo e(route('admin.owner.edit', $value->owner_id)); ?>" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square small"> Sửa</i></a>
                                 <a href="<?php echo e(route('admin.owner.delete', $value->owner_id)); ?>" onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" class="btn btn-sm btn-danger"><i class="bi bi-trash small"> Xóa</i></a>
                             </td>

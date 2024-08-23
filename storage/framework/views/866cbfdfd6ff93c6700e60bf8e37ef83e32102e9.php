@@ -52,11 +52,11 @@
                       </div>
                       <div class="col-md-4">
                         <label for="sale_building" class="form-label-sm">Tòa</label>
-                        <input type="email" class="form-control form-control-sm" id="sale_building" name="sale_building" value="<?php echo e($sale->sale_building); ?>">
+                        <input type="text" class="form-control form-control-sm" id="sale_building" name="sale_building" value="<?php echo e($sale->sale_building); ?>">
                       </div>
                       <div class="col-md-4">
                         <label for="sale_floor" class="form-label-sm">Tầng</label>
-                        <input type="email" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="<?php echo e($sale->sale_floor); ?>">
+                        <input type="text" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="<?php echo e($sale->sale_floor); ?>">
                       </div>
                       <div class="col-md-4">
                         <label for="sale_style" class="form-label-sm">Loại căn hộ</label>
@@ -144,7 +144,7 @@
     </div><!-- End Upload IMG Modal-->
 
     <?php $__env->startSection('admin.script'); ?>
-    <script src="<?php echo e(asset('form/sale.js')); ?>"></script>
+      <script src="<?php echo e(asset('form/sale.js')); ?>"></script>
     <?php $__env->stopSection(); ?>
 
 <?php $__env->stopSection(); ?>

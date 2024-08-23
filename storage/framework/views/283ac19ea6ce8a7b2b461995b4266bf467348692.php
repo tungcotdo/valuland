@@ -97,7 +97,7 @@ unset($__errorArgs, $__bag); ?>
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end"><?php echo e(__('Confirm Password')); ?></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control-sm" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control form-control-sm" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
