@@ -27,7 +27,10 @@ class Controller extends BaseController
             $notifications = DB::table('notification as n')
             ->join('notification_user as nu', 'n.notification_id', '=', 'nu.notification_id')
             ->where('nu.user_id', Auth::user()->id)
+            ->where('nu.user_group_id', Auth::user()->user_group_id)
             ->get();
+
+            //dd(Auth::user(), $notifications);
 
             View::share(['_notifications' => $notifications]);
             return $next($request);

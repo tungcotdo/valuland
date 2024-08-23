@@ -51,6 +51,7 @@ class NotificationController extends Controller
 
                 DB::table('notification_user')->insert([
                     'user_id'  => $value->id,
+                    'user_group_id'  => $value->user_group_id,
                     'notification_id'  => $request->notification_id,
                     'status' => 0
                 ]);
@@ -96,6 +97,7 @@ class NotificationController extends Controller
 
                 DB::table('notification_user')->insert([
                     'user_id'  => $value->id,
+                    'user_group_id'  => $value->user_group_id,
                     'notification_id'  => $notification_id,
                 ]);
             }
@@ -142,6 +144,7 @@ class NotificationController extends Controller
 
                 DB::table('notification_user')->insert([
                     'user_id'  => $value->id,
+                    'user_group_id'  => $value->user_group_id,
                     'notification_id'  => $request->notification_id,
                     'status' => 0
                 ]);

@@ -92,7 +92,7 @@ class SaleController extends Controller
         try{
             $file = $request->file('sale_contract_img');
             $sale_contract_img = $request->sale_contract_img_text;
-
+            
             if( !empty( $file ) ){
                 $file_name = rand().'.'.$file->extension();
                 
@@ -100,7 +100,7 @@ class SaleController extends Controller
                 
                 $file->move($upload_path, $file_name);
     
-                File::delete($sale_contract_img);
+                File::delete($request->sale_contract_img_text);
 
                 $sale_contract_img = $upload_path . $file_name;
             }

@@ -51,7 +51,7 @@
             <div>
               <input class="form-check-input" type="checkbox" name="notification_issend" id="notification_issend" value="1">
               <label class="form-check-label" for="notification_issend">
-                Gửi luôn
+                Gửi thông báo
               </label>
             </div>
             <button type="submit" class="btn btn-primary mx-3">Lưu thông báo</button>

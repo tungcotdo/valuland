@@ -4,7 +4,8 @@
       <h1>Form thêm hợp đồng</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="contract.html">Hợp đồng</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('admin.contract.index') }}">Hợp đồng</a></li>
           <li class="breadcrumb-item active">Thêm mới</li>
         </ol>
       </nav>

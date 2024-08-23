@@ -39,28 +39,34 @@ class AuthorizationController extends Controller
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){
-        $compact['user'] = DB::table('users')->where('id', $request->user_id)->first();
-        $compact['user_groups'] = DB::table('user_group')->get();
+        $compact['user_group'] = DB::table('user_group')->where('user_group_id', $request->authorization_id)->first();
+        $compact['functions'] = DB::table('function')->get();
+        $user_group_function = DB::table('user_group_function')->where('user_group_id', $request->authorization_id)->first();
+        if( !empty( $user_group_function->function_id ) ){
+            $compact['user_group_function_id'] = explode(',', $user_group_function->function_id);
+        }
         return view('admin.authorization.edit', $compact);
     }
     public function update(Request $request){
-        $user_group = explode( '_', $request->user_group );
+        DB::table('user_group')->where('user_group_id', $request->authorization_id)->update([
+            'user_group_name'  => $request['user_group_name'],
+            'user_group_description' => $request['user_group_description'],
+            'user_group_created_at'  => Carbon::now(),
+            'user_group_updated_at'  => Carbon::now()
+        ]);
 
-        $param['name']  = $request['user_name'];
-        $param['email'] = $request['user_email'];
-        $param['phone'] = $request['user_phone'];
-        $param['user_group_id'] = $user_group[0];
-        $param['user_group_name'] = $user_group[1];
-        $param['updated_at']  = Carbon::now();
-
-        if( !empty( $request['user_password'] ) ){
-            $param['password'] = bcrypt($request['user_password']);
-        }
+        DB::table('user_group_function')->where('user_group_id', $request->authorization_id)->delete();
         
-        DB::table('users')->where('id', $request->user_id)->update($param);
-        return redirect()->back()->with('success', 'Sửa dữ liệu thành công!');
+        $function_select = implode(',', $request['function_select']);
+        DB::table('user_group_function')->insert([
+            'user_group_id'  => $request->authorization_id,
+            'function_id' => $function_select
+        ]);
+
+        return redirect()->back()->with('success', 'Cập nhật dữ liệu thành công!');
     }
     public function delete(Request $request){
+        DB::table('user_group_function')->where('user_group_id', $request->authorization_id)->delete();
         DB::table('user_group')->where('user_group_id', $request->authorization_id)->delete();
         return redirect()->back()->with('success', 'Xoá dữ liệu thành công!');
     }

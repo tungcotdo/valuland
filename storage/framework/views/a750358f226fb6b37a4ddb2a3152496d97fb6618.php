@@ -1,12 +1,12 @@
 
 <?php $__env->startSection('admin.main'); ?>
 <div class="pagetitle">
-      <h1>Form sửa người dùng</h1>
+      <h1>Form thêm quyền truy cập</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
-          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.user.index')); ?>">người dùng</a></li>
-          <li class="breadcrumb-item active">Sửa</li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.authorization.index')); ?>">Quyền truy cập</a></li>
+          <li class="breadcrumb-item active">Thêm mới</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -19,47 +19,57 @@
           <div class="row">
             
             <!-- Start raw -->
-            <form class="col-12" action="<?php echo e(route('admin.user.update', $user->id)); ?>" method="POST">
+            <form class="col-12" action="<?php echo e(route('admin.authorization.update', $user_group->user_group_id)); ?>" method="POST">
               <?php echo csrf_field(); ?>
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
                       <div class="col-md-6">
-                        <label for="user_name" class="form-label small">Tên</label>
-                        <input type="text" class="form-control form-control-sm" id="user_name" name="user_name" value="<?php echo e($user->name); ?>">
+                        <label for="user_group_name" class="form-label small">Tên</label>
+                        <input type="text" class="form-control form-control-sm" id="user_group_name" name="user_group_name" value="<?php echo e($user_group->user_group_name); ?>">
                       </div>
                       <div class="col-md-6">
-                        <label for="user_email" class="form-label small">Email</label>
-                        <input type="email" class="form-control form-control-sm" id="user_email" name="user_email" value="<?php echo e($user->email); ?>">
+                        <label for="user_group_description" class="form-label small">Mô tả</label>
+                        <input type="text" class="form-control form-control-sm" id="user_group_description" name="user_group_description" value="<?php echo e($user_group->user_group_description); ?>">
                       </div>
-                      <div class="col-md-6">
-                        <label for="user_email" class="form-label small">Cấp lại mật khẩu</label>
-                        <input type="text" class="form-control form-control-sm" id="user_password" name="user_password">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="user_phone" class="form-label small">Điện thoại</label>
-                        <input type="text" class="form-control form-control-sm" id="user_phone" name="user_phone" value="<?php echo e($user->phone); ?>">
-                      </div>
+                      
                     </div>
                 </div><!-- card-body -->
               </div><!-- card -->
 
               <div class="card mt-3">
                 <div class="card-body">
-                    <h5 class="card-title py-0 mb-3">Phân quyền</h5>
+                    <h5 class="card-title py-0 mb-3">Chức năng</h5>
                     <div class="row">
-                      <?php if( !empty( $user_groups ) ): ?>
-                        <?php $__currentLoopData = $user_groups; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-md-3">
-                          <input <?php echo e(( $value->user_group_id == $user->user_group_id ) ? 'checked' : ''); ?> class="form-check-input" type="radio" name="user_group" id="gridRadios_<?php echo e($value->user_group_id); ?>" value="<?php echo e($value->user_group_id); ?>_<?php echo e($value->user_group_name); ?>">
-                          <label class="form-check-label" for="gridRadios_<?php echo e($value->user_group_id); ?>">
-                            <?php echo e($value->user_group_name); ?>
-
-                          </label>
-                        </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <?php endif; ?>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col">Tên</th>
+                          <th scope="col">Nhóm</th>
+                          <th scope="col">Chọn</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <?php if( !empty( $functions ) ): ?>
+                              <?php $__currentLoopData = $functions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <tr>
+                                  <td><?php echo e($value->function_name); ?></td>
+                                  <td><?php echo e($value->function_group); ?></td>
+                                  <td>
+                                    <?php
+                                    $checked = '';
+                                      if( isset( $user_group_function_id ) &&  in_array($value->function_id, $user_group_function_id)){
+                                        $checked = 'checked';
+                                      }
+                                    ?>
+                                    <input type="checkbox" name="function_select[]" value="<?php echo e($value->function_id); ?>" <?php echo e($checked); ?>>
+                                  </td>
+                              </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
+                      </tbody>
+                    </table>
                     </div>
                 </div><!-- card-body -->
               </div><!-- card -->

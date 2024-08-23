@@ -4,7 +4,8 @@
       <h1>Danh sách hợp đồng</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="notification.html">hợp đồng</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.contract.index') }}">Hợp đồng</a></li>
           <li class="breadcrumb-item active">Danh sách</li>
         </ol>
       </nav>
@@ -36,28 +37,20 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Hợp đồng mua nhà</td>
-                        <td>Hợp đồng nhà</td>
-                        <td>
-                          <a href="https://cdn.thuvienphapluat.vn/phap-luat/2022-2/NHPT/hop-dong-thue-nha.png" class="btn btn-sm btn-info"><i class="bi bi-folder2-open"></i> Xem</a>
-                          <a href="notification-edit.html" class="btn btn-sm btn-success"><i class="bi bi-cloud-download"></i> Tải xuống</a>
-                          <a href="notification-edit.html" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Sửa</a>
-                          <a href="" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Hợp đồng thuê</td>
-                        <td>Hợp đồng thuê</td>
-                        <td>
-                          <a href="https://cdn.thuvienphapluat.vn/phap-luat/2022-2/NHPT/hop-dong-thue-nha.png" class="btn btn-sm btn-info"><i class="bi bi-folder2-open"></i> Xem</a>
-                          <a href="notification-edit.html" class="btn btn-sm btn-success"><i class="bi bi-cloud-download"></i> Tải xuống</a>
-                          <a href="notification-edit.html" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Sửa</a>
-                          <a href="" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa</a>
-                        </td>
-                      </tr>
+                        @if( !empty( $contracts ) )
+                            @foreach( $contracts as $value )
+                            <tr>
+                                <td scope="row">{{ $value->contract_id }}</td>
+                                <td>{{ $value->contract_title }}</td>
+                                <td>{{ $value->contract_description }}</td>
+                                <td>
+                                    <a href="{{ asset($value->contract_path) }}" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-folder2-open"></i> File</a>
+                                    <a href="{{ route('admin.contract.edit', $value->contract_id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Sửa</a>
+                                    <a onclick="return confirm('Bạn có muốn xóa dữ liệu này không?')" href="{{ route('admin.contract.delete', $value->contract_id) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Xóa</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                   </table>
                 </div>
