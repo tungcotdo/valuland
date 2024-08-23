@@ -38,7 +38,7 @@ class Controller extends BaseController
         $user_group_function = DB::table('user_group_function')->where('user_group_id', Auth::user()->user_group_id)->first();
         $function_ids = explode(',', $user_group_function->function_id);
         if( !in_array($function_id, $function_ids) ){
-            dd("Bạn không có quyền truy cập");
+            //dd("Bạn không có quyền truy cập");
         }
     }
 }
