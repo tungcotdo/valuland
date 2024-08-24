@@ -14,18 +14,20 @@
     <section class="section">
       <div class="row">
         <!-- Start raw -->
-        <form class="col-12" action="<?php echo e(route('admin.notification.update', $notification->notification_id)); ?>" method="POST">
+        <form class="col-12" action="<?php echo e(route('admin.notification.update', $notification->notification_id)); ?>" id="admin-notification-edit" method="POST">
           <?php echo csrf_field(); ?>
           <div class="card">
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-12">
+                    <div class="col-md-12 validate">
                       <label for="notification_title" class="form-label">Tiêu Đề</label>
                       <input type="text" class="form-control" id="notification_title" name="notification_title" value="<?php echo e($notification->notification_title); ?>">
+                      <small class="error-message text-danger"></small>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 validate">
                       <label for="notification_content" class="form-label">Nội dung thông báo</label>
                       <textarea type="text" class="form-control" id="notification_content" name="notification_content"><?php echo e($notification->notification_content); ?></textarea>
+                      <small class="error-message text-danger"></small>
                     </div>
                 </div>
             </div>
@@ -65,7 +67,7 @@
 <?php $__env->startSection('admin.script'); ?>
   <script>
       Validator({
-          form: '#admin-owner-store',
+          form: '#admin-notification-edit',
           rules: [
               Validator.tbRequired({
                   selector: '#notification_title',

@@ -1,12 +1,12 @@
 
 <?php $__env->startSection('admin.main'); ?>
 <div class="pagetitle">
-      <h1>Form thêm quyền truy cập</h1>
+      <h1>Form sửa quyền truy cập</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
           <li class="breadcrumb-item"><a href="<?php echo e(route('admin.authorization.index')); ?>">Quyền truy cập</a></li>
-          <li class="breadcrumb-item active">Thêm mới</li>
+          <li class="breadcrumb-item active">Sửa</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -19,15 +19,16 @@
           <div class="row">
             
             <!-- Start raw -->
-            <form class="col-12" action="<?php echo e(route('admin.authorization.update', $user_group->user_group_id)); ?>" method="POST">
+            <form class="col-12" action="<?php echo e(route('admin.authorization.update', $user_group->user_group_id)); ?>" id="admin-authorization-edit" method="POST">
               <?php echo csrf_field(); ?>
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_group_name" class="form-label small">Tên</label>
                         <input type="text" class="form-control form-control-sm" id="user_group_name" name="user_group_name" value="<?php echo e($user_group->user_group_name); ?>">
+                        <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6">
                         <label for="user_group_description" class="form-label small">Mô tả</label>
@@ -85,5 +86,22 @@
       </div>
     </section>
 
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('admin.script'); ?>
+  <script>
+      Validator({
+          form: '#admin-authorization-edit',
+          rules: [
+              Validator.tbRequired({
+                  selector: '#user_group_name',
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+              document.getElementById("modal__loading").style.display = "block";
+              data.form.submit();
+          }
+      });
+  </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/authorization/edit.blade.php ENDPATH**/ ?>

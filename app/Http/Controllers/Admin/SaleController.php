@@ -17,6 +17,7 @@ class SaleController extends Controller
 {
 
     public function raw(Request $request){
+        $this->_authorization(6);
         $query = DB::table('sale')->where('sale_status', 1);
 
         if( !empty( $request->code ) ){
@@ -39,6 +40,7 @@ class SaleController extends Controller
         return view('admin.sale.raw', ['sale_raws' => $sale_raws]);
     }
     public function select(Request $request){
+        $this->_authorization(7);
         $query = DB::table('sale')->where('sale_status', 2);
 
         if( !empty( $request->code ) ){
@@ -61,6 +63,7 @@ class SaleController extends Controller
         return view('admin.sale.select', ['sale_selects' => $sale_selects]);
     }
     public function transaction(Request $request){
+        $this->_authorization(8);
         $query = DB::table('sale')->where('sale_status', 3);
 
         if( !empty( $request->code ) ){
@@ -84,11 +87,13 @@ class SaleController extends Controller
     }
 
     public function transactionEdit(Request $request){
+        $this->_authorization(20);
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
         return view('admin.sale.edit-transaction', ['sale' => $sale, 'house' => new House]);
     }
 
     public function transactionUpdate(Request $request){
+        $this->_authorization(20);
         try{
             $file = $request->file('sale_contract_img');
             $sale_contract_img = $request->sale_contract_img_text;
@@ -135,11 +140,12 @@ class SaleController extends Controller
     }
 
     public function edit(Request $request){
+        $this->_authorization(20);
         $sale = DB::table('sale')->where('sale_id', $request->sale_id)->first();
         return view('admin.sale.edit', ['sale' => $sale, 'house' => new House]);
     }
     public function update(Request $request){
-
+        $this->_authorization(20);
         //Required fields to select list
         $flag = array_filter([
             'code' => $request->code,
@@ -186,10 +192,12 @@ class SaleController extends Controller
         return redirect()->back()->with('success', 'Cập nhật dữ liệu danh sách bán thành công!');
     }
     public function delete(Request $request){
+        $this->_authorization(21);
         DB::table('sale')->where('sale_id',$request->sale_id)->delete();
         return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
     }
     public function status(Request $request){
+        $this->_authorization(20);
         DB::table('sale')->where('sale_id', $request->sale_id)->update([
             'sale_status' => $request->sale_status
         ]);

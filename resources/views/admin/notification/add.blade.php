@@ -14,18 +14,20 @@
     <section class="section">
       <div class="row">
         <!-- Start raw -->
-        <form class="col-12" action="{{route('admin.notification.store')}}" method="POST">
+        <form class="col-12" action="{{route('admin.notification.store')}}" id="admin-notification-add" method="POST">
           @csrf
           <div class="card">
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-12">
+                    <div class="col-md-12 validate">
                       <label for="notification_title" class="form-label">Tiêu Đề</label>
                       <input type="text" class="form-control" id="notification_title" name="notification_title">
+                      <small class="error-message text-danger"></small>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 validate">
                       <label for="notification_content" class="form-label">Nội dung thông báo</label>
                       <textarea type="text" class="form-control" id="notification_content" name="notification_content"></textarea>
+                      <small class="error-message text-danger"></small>
                     </div>
                 </div>
             </div>
@@ -64,7 +66,7 @@
 @section('admin.script')
   <script>
       Validator({
-          form: '#admin-owner-store',
+          form: '#admin-notification-add',
           rules: [
               Validator.tbRequired({
                   selector: '#notification_title',

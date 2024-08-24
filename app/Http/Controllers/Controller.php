@@ -24,24 +24,39 @@ class Controller extends BaseController
 
     function __construct(){
         $this->middleware(function ($request, $next) {
-            $notifications = DB::table('notification as n')
-            ->join('notification_user as nu', 'n.notification_id', '=', 'nu.notification_id')
-            ->where('nu.user_id', Auth::user()->id)
+            $compact['_notification'] = DB::table('notification as n')
+            ->leftjoin('notification_user as nu', 'n.notification_id', '=', 'nu.notification_id')
             ->where('nu.user_group_id', Auth::user()->user_group_id)
+            ->orderBy('nu.notification_isread', 'ASC')
+            ->orderBy('n.notification_id', 'DESC')
             ->get();
 
-            //dd(Auth::user(), $notifications);
+            $compact['_notification_count'] = DB::table('notification_user')
+            ->where('user_id', Auth::user()->id)
+            ->where('notification_isread', 0)
+            ->count();
 
-            View::share(['_notifications' => $notifications]);
+            $compact['_authorization'] =  function($function_id){
+                $user_group_function = DB::table('user_group_function')->where('user_group_id', Auth::user()->user_group_id)->first();
+                $function_ids = explode(',', $user_group_function->function_id);
+                if( !in_array($function_id, $function_ids) ){
+                    return false;
+                }
+                return true;
+            };
+
+            View::share($compact);
             return $next($request);
         });
     }
 
-    public function authorization($function_id){
+    public function _authorization($function_id){
         $user_group_function = DB::table('user_group_function')->where('user_group_id', Auth::user()->user_group_id)->first();
+
         $function_ids = explode(',', $user_group_function->function_id);
+
         if( !in_array($function_id, $function_ids) ){
-            //dd("Bạn không có quyền truy cập");
+            dd("Bạn không có quyền truy cập");
         }
     }
 }

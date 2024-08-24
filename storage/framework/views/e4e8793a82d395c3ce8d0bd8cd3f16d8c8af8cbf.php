@@ -4,7 +4,7 @@
         <h1>Danh sách thuê đang giao dịch</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
             <li class="breadcrumb-item active">Danh sách thuê đang giao dịch</li>
           </ol>
         </nav>
@@ -65,7 +65,8 @@
                           <th scope="col" class="small">NGÀY KÝ HỢP ĐỒNG</th>
                           <th scope="col" class="small">NGƯỜI MÔ GIỚI</th>
                           <th scope="col" class="small">GIÁ</th>
-                          <th scope="col" class="small">NGƯỜI LÀM PHÁP LÝ</th>
+                          <th scope="col" class="small">NGÀY BẮT ĐẦU</th>
+                          <th scope="col" class="small">NGÀY BẮT KẾT THÚC</th>
                           <th scope="col" class="small">HỢP ĐỒNG</th>
                           <th scope="col" class="small">HÀNH ĐỘNG</th>
                         </tr>
@@ -80,7 +81,8 @@
                                     <td><?php echo e($value->rent_contract_date); ?></td>
                                     <td><?php echo e($value->rent_broker); ?></td>
                                     <td><?php echo e($value->rent_price); ?></td>
-                                    <td><?php echo e($value->rent_legal_person); ?></td>
+                                    <td><?php echo e($value->rent_start_date); ?></td>
+                                    <td><?php echo e($value->rent_end_date); ?></td>
                                     <?php if( !empty( $value->rent_contract_img ) ): ?>
                                       <td><a href="<?php echo e(asset($value->rent_contract_img)); ?>" target="_blank" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Xem</a></td>
                                     <?php else: ?>

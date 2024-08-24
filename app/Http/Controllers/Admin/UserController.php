@@ -14,6 +14,7 @@ use Auth;
 class UserController extends Controller
 {
     public function index(Request $request){
+        $this->_authorization(34);
         $query = DB::table('users');
 
         if( !empty( $request->name ) ){
@@ -33,10 +34,12 @@ class UserController extends Controller
         return view('admin.user.index', $compact);
     }
     public function add(Request $request){
+        $this->_authorization(34);
         $compact['user_groups'] = DB::table('user_group')->get();
         return view('admin.user.add', $compact);
     }
     public function store(Request $request){
+        $this->_authorization(34);
         $isEmail = DB::table('users')->where('email', $request['user_email'])->first();
 
         if( !empty( $isEmail ) ){
@@ -58,11 +61,13 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Thêm dữ liệu thành công!');
     }
     public function edit(Request $request){
+        $this->_authorization(34);
         $compact['user'] = DB::table('users')->where('id', $request->user_id)->first();
         $compact['user_groups'] = DB::table('user_group')->get();
         return view('admin.user.edit', $compact);
     }
     public function update(Request $request){
+        $this->_authorization(34);
         $user_group = explode( '_', $request->user_group );
 
         $param['name']  = $request['user_name'];
@@ -80,6 +85,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Sửa dữ liệu thành công!');
     }
     public function delete(Request $request){
+        $this->_authorization(34);
         DB::table('users')->where('id', $request->user_id)->delete();
         return redirect()->back()->with('success', 'Xoá dữ liệu thành công!');
     }

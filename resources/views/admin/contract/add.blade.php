@@ -18,10 +18,11 @@
           <div class="card">
             <div class="card-body">
                 <form class="row g-3" action="{{route('admin.contract.store')}}" method="POST" id="admin-contract-add" enctype="multipart/form-data">
-                @csrf    
-                <div class="col-md-4">
+                    @csrf    
+                    <div class="col-md-4 validate">
                       <label for="contract_title" class="form-label">Tiêu Đề</label>
                       <input type="text" class="form-control" id="contract_title" name="contract_title">
+                      <small class="error-message text-danger"></small>
                     </div>
                     <div class="col-md-4">
                       <label for="contract_description" class="form-label">Mô tả</label>
@@ -41,4 +42,21 @@
         </div><!-- End raw -->
       </div>
     </section>
+@endsection
+@section('admin.script')
+  <script>
+      Validator({
+          form: '#admin-contract-add',
+          rules: [
+              Validator.tbRequired({
+                  selector: '#contract_title',
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+              document.getElementById("modal__loading").style.display = "block";
+              data.form.submit();
+          }
+      });
+  </script>
 @endsection

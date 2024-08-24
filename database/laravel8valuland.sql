@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 23/08/2024 15:15:58
+ Date: 24/08/2024 09:37:50
 */
 
 SET NAMES utf8mb4;
@@ -27,12 +27,12 @@ CREATE TABLE `contract`  (
   `contract_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `contract_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`contract_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of contract
 -- ----------------------------
-INSERT INTO `contract` VALUES (1, 'Doloribus sunt ea vo', 'Ut aute et similique', 'upload/contract/475690335.jpg');
+INSERT INTO `contract` VALUES (5, 'Hợp đồng thuê nhà', 'Hợp đồng thuê nhà tại Vinhome Ocean Park', 'upload/contract/1648562064.xlsx');
 
 -- ----------------------------
 -- Table structure for function
@@ -43,7 +43,7 @@ CREATE TABLE `function`  (
   `function_group` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Controller',
   `function_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Action',
   PRIMARY KEY (`function_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of function
@@ -66,7 +66,23 @@ INSERT INTO `function` VALUES (15, 'Hợp đồng', 'Danh sách');
 INSERT INTO `function` VALUES (16, 'Hợp đồng', 'Thêm mới');
 INSERT INTO `function` VALUES (17, 'Hợp đồng', 'Sửa');
 INSERT INTO `function` VALUES (18, 'Hợp đồng', 'Xóa');
-INSERT INTO `function` VALUES (19, 'Chủ nhà', 'Cập nhật nhu cầu');
+INSERT INTO `function` VALUES (20, 'Bán', 'Sửa');
+INSERT INTO `function` VALUES (21, 'Bán', 'Xóa');
+INSERT INTO `function` VALUES (22, 'Thuê', 'Sửa');
+INSERT INTO `function` VALUES (23, 'Thuê', 'Xóa');
+INSERT INTO `function` VALUES (25, 'Thông báo', 'Xóa');
+INSERT INTO `function` VALUES (26, 'Phân quyền', 'Danh sách');
+INSERT INTO `function` VALUES (27, 'Phân quyền', 'Thêm mới');
+INSERT INTO `function` VALUES (28, 'Phân quyền', 'Sửa');
+INSERT INTO `function` VALUES (29, 'Phân quyền', 'Xóa');
+INSERT INTO `function` VALUES (30, 'Hợp đồng', 'Danh sách');
+INSERT INTO `function` VALUES (31, 'Hợp đồng', 'Thêm mới');
+INSERT INTO `function` VALUES (32, 'Hợp đồng', 'Sửa');
+INSERT INTO `function` VALUES (33, 'Hợp đồng', 'Xóa');
+INSERT INTO `function` VALUES (34, 'Người dùng', 'Danh sách');
+INSERT INTO `function` VALUES (35, 'Người dùng', 'Thêm mới');
+INSERT INTO `function` VALUES (36, 'Người dùng', 'Sửa');
+INSERT INTO `function` VALUES (37, 'Người dùng', 'Xóa');
 
 -- ----------------------------
 -- Table structure for notification
@@ -80,12 +96,18 @@ CREATE TABLE `notification`  (
   `notification_updated_at` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `notification_created_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `notification_updated_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `notification_at` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `notification_issend` tinyint(1) NULL DEFAULT 0,
   `notification_user_group` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `notification_user_group_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`notification_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of notification
+-- ----------------------------
+INSERT INTO `notification` VALUES (1, 'Tăng giá căn s110', 'từ 3 tỷ - 4 tỷ', '2024-08-23 16:45:46', '2024-08-23 16:45:46', 'phamthang@gmail.com', 'phamthang@gmail.com', 1, 'Admin,Seller', '2,3');
+INSERT INTO `notification` VALUES (4, 'Thông báo', 'Aut saepe blanditiis', '2024-08-24 09:32:40', '2024-08-24 09:32:40', 'phamthang@gmail.com', 'phamthang@gmail.com', 0, 'Telesale', '3');
+INSERT INTO `notification` VALUES (5, 'Dolore aute fugiat e', 'Officiis laborum in', '2024-08-24 07:25:13', '2024-08-24 07:25:13', 'phamthang@gmail.com', 'phamthang@gmail.com', 1, 'Admin,Seller', '2,3');
 
 -- ----------------------------
 -- Table structure for notification_user
@@ -95,9 +117,19 @@ CREATE TABLE `notification_user`  (
   `notification_user_id` int(11) NOT NULL AUTO_INCREMENT,
   `notification_id` int(11) NULL DEFAULT NULL,
   `user_id` int(11) NULL DEFAULT NULL,
-  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '0 : chưa đọc, 1 : đã đọc',
+  `notification_isread` tinyint(1) NULL DEFAULT 0 COMMENT '0 : chưa đọc, 1 : đã đọc',
+  `user_group_id` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`notification_user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of notification_user
+-- ----------------------------
+INSERT INTO `notification_user` VALUES (14, 4, 3, 1, 3);
+INSERT INTO `notification_user` VALUES (15, 5, 3, 1, 3);
+INSERT INTO `notification_user` VALUES (16, 5, 6, 0, 2);
+INSERT INTO `notification_user` VALUES (17, 1, 3, 1, 3);
+INSERT INTO `notification_user` VALUES (18, 1, 6, 0, 2);
 
 -- ----------------------------
 -- Table structure for owner
@@ -2485,7 +2517,7 @@ CREATE TABLE `rent`  (
   `rent_room` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_direction` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_navigable_area` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `rent_price` decimal(10, 2) NULL DEFAULT NULL,
+  `rent_price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_description` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `rent_created_at` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_created_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -2501,15 +2533,17 @@ CREATE TABLE `rent`  (
   `rent_updated_at` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_updated_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `owner_id` int(11) NULL DEFAULT NULL,
+  `rent_start_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `rent_end_date` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`rent_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of rent
 -- ----------------------------
-INSERT INTO `rent` VALUES (1, 'P101S07', 'Nguyễn Thị Hương', '0339889888', 'huongvinhmc@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-23 14:07:18', 'phamthang@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-23 14:07:18', 'phamthang@gmail.com', NULL);
-INSERT INTO `rent` VALUES (2, 'P101S08', 'Vũ Hồng Vân', '0912116082;0983608869', 'thanhhuonggt82@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-23 14:07:24', 'phamthang@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-23 14:07:24', 'phamthang@gmail.com', NULL);
-INSERT INTO `rent` VALUES (3, 'P101S11', 'CÔNG TY CỔ PHẦN BẤT ĐỘNG SẢN HD HOMES', '0965615511;0904237979', 'invoice@hdhomes.vn', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-23 14:07:29', 'phamthang@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-23 14:07:29', 'phamthang@gmail.com', NULL);
+INSERT INTO `rent` VALUES (1, 'P101S07', 'Nguyễn Thị Hương', '0339889888', 'huongvinhmc@gmail.com', 'dfasdf', 'adfasdf', 'dfasd', NULL, '1', 'fasdf', 'sdfasd', 'dfasdfasd', '2024-08-24 09:19:37', 'phamthang@gmail.com', 3, '42342', '3342', '34234', '4234', NULL, 'http://localhost:8000/upload/rent/1/1346376953.jpg', NULL, 1, '2024-08-24 09:19:37', 'phamthang@gmail.com', NULL, 'dfadf', 'fasdfasd');
+INSERT INTO `rent` VALUES (2, 'P101S08', 'Vũ Hồng Vân', '0912116082;0983608869', 'thanhhuonggt82@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-23 14:07:24', 'phamthang@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-23 14:07:24', 'phamthang@gmail.com', NULL, NULL, NULL);
+INSERT INTO `rent` VALUES (3, 'P101S11', 'CÔNG TY CỔ PHẦN BẤT ĐỘNG SẢN HD HOMES', '0965615511;0904237979', 'invoice@hdhomes.vn', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-08-23 14:07:29', 'phamthang@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-23 14:07:29', 'phamthang@gmail.com', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for rent_img
@@ -2523,7 +2557,13 @@ CREATE TABLE `rent_img`  (
   `rent_img_updated_at` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `rent_img_display` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`rent_img_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of rent_img
+-- ----------------------------
+INSERT INTO `rent_img` VALUES (1, 1, 'upload/rent/1/913621694.jpg', '2024-08-23 16:53:13', '2024-08-23 16:53:13', 1);
+INSERT INTO `rent_img` VALUES (2, 1, 'upload/rent/1/1278571764.jpg', '2024-08-23 16:53:13', '2024-08-23 16:53:13', 1);
 
 -- ----------------------------
 -- Table structure for sale
@@ -2603,20 +2643,15 @@ CREATE TABLE `user_group`  (
   `user_group_created_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `user_group_updated_by` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`user_group_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_group
 -- ----------------------------
-INSERT INTO `user_group` VALUES (1, 'Super Admin', 'Quyền hệ thống', NULL, NULL, NULL, NULL);
-INSERT INTO `user_group` VALUES (2, 'Admin', 'Người quản lý', NULL, NULL, NULL, NULL);
-INSERT INTO `user_group` VALUES (3, 'Seller', 'Người bán hàng', NULL, NULL, NULL, NULL);
+INSERT INTO `user_group` VALUES (1, 'Super Admin', 'Quyền hệ thống', '2024-08-24 08:33:39', '2024-08-24 08:33:39', NULL, NULL);
+INSERT INTO `user_group` VALUES (2, 'Admin', 'Người quản lý', '2024-08-24 09:12:32', '2024-08-24 09:12:32', NULL, NULL);
+INSERT INTO `user_group` VALUES (3, 'Telesale', 'Nhân viên gọi điện', '2024-08-24 08:32:25', '2024-08-24 08:32:25', NULL, NULL);
 INSERT INTO `user_group` VALUES (4, 'Broker', 'Người mô giới', NULL, NULL, NULL, NULL);
-INSERT INTO `user_group` VALUES (5, 'Sandra Lane', 'Et nisi aut ut imped', '2024-08-22 14:06:12', '2024-08-22 14:06:12', NULL, NULL);
-INSERT INTO `user_group` VALUES (6, 'Sandra Lane', 'Et nisi aut ut imped', '2024-08-22 14:06:23', '2024-08-22 14:06:23', NULL, NULL);
-INSERT INTO `user_group` VALUES (7, 'Sandra Lane', 'Et nisi aut ut imped', '2024-08-22 14:08:48', '2024-08-22 14:08:48', NULL, NULL);
-INSERT INTO `user_group` VALUES (8, 'MacKenzie Grimes', 'Optio expedita prae', '2024-08-22 14:10:18', '2024-08-22 14:10:18', NULL, NULL);
-INSERT INTO `user_group` VALUES (12, 'Ella Lane', 'Vel voluptatem aliqu', '2024-08-22 17:10:21', '2024-08-22 17:10:21', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user_group_function
@@ -2625,19 +2660,16 @@ DROP TABLE IF EXISTS `user_group_function`;
 CREATE TABLE `user_group_function`  (
   `user_group_function_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NULL DEFAULT NULL,
-  `function_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `function_id` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`user_group_function_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_group_function
 -- ----------------------------
-INSERT INTO `user_group_function` VALUES (1, 2, '2, 5, 6, 7, 8, 12, 13, 15, 16, 18');
-INSERT INTO `user_group_function` VALUES (2, 8, '1, 3, 5, 12, 14, 15, 17, 19');
-INSERT INTO `user_group_function` VALUES (3, 9, '1,2,4,5,7,9,10,12,13,15,16,18,19');
-INSERT INTO `user_group_function` VALUES (4, 10, '4,5,6,8,10');
-INSERT INTO `user_group_function` VALUES (5, 11, '1,2,3,4,5,7,8,10,11,12,15,16,17,19');
-INSERT INTO `user_group_function` VALUES (6, 12, '3,4,8,10,11,12,14,15,19');
+INSERT INTO `user_group_function` VALUES (20, 3, '2,4,5,6,9');
+INSERT INTO `user_group_function` VALUES (21, 1, '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37');
+INSERT INTO `user_group_function` VALUES (25, 2, '6,20,9,22');
 
 -- ----------------------------
 -- Table structure for users
@@ -2658,12 +2690,12 @@ CREATE TABLE `users`  (
   `user_group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (3, 'Pham Thang', 'phamthang@gmail.com', '2024-08-12 18:24:01', '$2y$10$XE7kw4QUa8g40DYeY8ZG4uwz8bMAehdlcP1vmjtM.RKdVXq0kcOyO', 'pmmI8tlWcIgmD5RRAB9G1hxtBNRTEyBmTCQLCLWg0gEgxukA6KYw9hHw9kHz', '2024-08-12 18:24:01', '2024-08-22 13:26:55', 1, '1234', '2', 'Admin');
-INSERT INTO `users` VALUES (6, 'Đỗ Sơn Tùng', 'tungbinhthaison@gmail.com', NULL, '$2y$10$g.Whc5JSlRxpjUz1tmx3C.sQtLVYz1Vi.ABYsLpQHBZ7H6kqBc6Qq', NULL, '2024-08-21 18:08:00', '2024-08-23 07:36:09', 1, '+1 (352) 958-4893', '2', 'Admin');
+INSERT INTO `users` VALUES (3, 'Pham Thang', 'phamthang@gmail.com', '2024-08-12 18:24:01', '$2y$10$XE7kw4QUa8g40DYeY8ZG4uwz8bMAehdlcP1vmjtM.RKdVXq0kcOyO', 'pmmI8tlWcIgmD5RRAB9G1hxtBNRTEyBmTCQLCLWg0gEgxukA6KYw9hHw9kHz', '2024-08-12 18:24:01', '2024-08-24 08:37:49', 1, '1234', '1', 'Super Admin');
+INSERT INTO `users` VALUES (6, 'Đỗ Sơn Tùng', 'tungbinhthaison@gmail.com', NULL, '$2y$10$hs.h5NZT6HHTI9uvtT3bzeDbySBcep0fmwEliBh7Et.AK.6w3WXhy', NULL, '2024-08-21 18:08:00', '2024-08-24 09:11:43', 1, '+1 (352) 958-4893', '2', 'Admin');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -43,17 +43,19 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <?php if( !empty( $_notifications ) ): ?>
+        <?php if( !empty( $_notification ) ): ?>
           <li class="nav-item dropdown">
 
+  
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-danger badge-number"><?php echo e(count($_notifications)); ?></span>
+              <span class="badge bg-danger badge-number"><?php echo e(!empty( $_notification_count ) ? $_notification_count : ''); ?></span>
             </a><!-- End Notification Icon -->
+
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
               <li class="dropdown-header">
-                Bạn có <?php echo e(count($_notifications)); ?> thông báo
+                <?php echo e(!empty( $_notification_count ) ? 'Bạn có ' . $_notification_count . ' thông báo mới' : ''); ?> 
                 <a href="<?php echo e(route('admin.notification.index')); ?>"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
               </li>
               <li>
@@ -61,14 +63,25 @@
               </li>
 
               
-                <?php $__currentLoopData = $_notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <li class="notification-item">
-                  <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-                  <div>
-                    <h4><?php echo e($value->notification_title); ?></h4>
-                    <p><?php echo e($value->notification_content); ?></p>
-                  </div>
-                </li>
+                <?php $__currentLoopData = $_notification; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if( $value->notification_isread == 0 && $value->user_id == Auth::user()->id ): ?>
+                    <a class="notification-item" href="<?php echo e(route('admin.notification.view', $value->notification_id)); ?>">
+                      <i class="bi bi-eye text-danger"></i>
+                      <div>
+                        <h4><?php echo e($value->notification_title); ?></h4>
+                        <p><?php echo e($value->notification_content); ?></p>
+                      </div>
+                    </a>
+                  <?php else: ?>
+                    <a class="notification-item" href="<?php echo e(route('admin.notification.view', $value->notification_id)); ?>">
+                      <i class="bi bi-eye text-secondary"></i>
+                      <div>
+                        <h4><?php echo e($value->notification_title); ?></h4>
+                        <p><?php echo e($value->notification_content); ?></p>
+                      </div>
+                    </a>
+                  <?php endif; ?>
+
                 <li>
                   <hr class="dropdown-divider">
                 </li>

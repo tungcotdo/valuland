@@ -43,17 +43,19 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        @if( !empty( $_notifications ) )
+        @if( !empty( $_notification ) )
           <li class="nav-item dropdown">
 
+  
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
               <i class="bi bi-bell"></i>
-              <span class="badge bg-danger badge-number">{{ count($_notifications) }}</span>
+              <span class="badge bg-danger badge-number">{{ !empty( $_notification_count ) ? $_notification_count : '' }}</span>
             </a><!-- End Notification Icon -->
+
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
               <li class="dropdown-header">
-                Bạn có {{ count($_notifications) }} thông báo
+                {{ !empty( $_notification_count ) ? 'Bạn có ' . $_notification_count . ' thông báo mới' : '' }} 
                 <a href="{{route('admin.notification.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Xem tất cả</span></a>
               </li>
               <li>
@@ -61,14 +63,25 @@
               </li>
 
               
-                @foreach( $_notifications as $value )
-                <li class="notification-item">
-                  <i class="bi bi-exclamation-circle text-warning text-danger"></i>
-                  <div>
-                    <h4>{{ $value->notification_title }}</h4>
-                    <p>{{ $value->notification_content }}</p>
-                  </div>
-                </li>
+                @foreach( $_notification as $value )
+                  @if( $value->notification_isread == 0 && $value->user_id == Auth::user()->id )
+                    <a class="notification-item" href="{{route('admin.notification.view', $value->notification_id)}}">
+                      <i class="bi bi-eye text-danger"></i>
+                      <div>
+                        <h4>{{ $value->notification_title }}</h4>
+                        <p>{{ $value->notification_content }}</p>
+                      </div>
+                    </a>
+                  @else
+                    <a class="notification-item" href="{{route('admin.notification.view', $value->notification_id)}}">
+                      <i class="bi bi-eye text-secondary"></i>
+                      <div>
+                        <h4>{{ $value->notification_title }}</h4>
+                        <p>{{ $value->notification_content }}</p>
+                      </div>
+                    </a>
+                  @endif
+
                 <li>
                   <hr class="dropdown-divider">
                 </li>

@@ -19,27 +19,31 @@
           <div class="row">
             
             <!-- Start raw -->
-            <form class="col-12" action="<?php echo e(route('admin.user.store')); ?>" method="POST">
+            <form class="col-12" action="<?php echo e(route('admin.user.store')); ?>" method="POST" id="admin-user-add">
               <?php echo csrf_field(); ?>
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_name" class="form-label small">Tên</label>
                         <input type="text" class="form-control form-control-sm" id="user_name" name="user_name">
+                        <small class="error-message text-danger"></small>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_email" class="form-label small">Email</label>
                         <input type="email" class="form-control form-control-sm" id="user_email" name="user_email">
+                        <small class="error-message text-danger"></small>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_email" class="form-label small">Mật khẩu</label>
                         <input type="text" class="form-control form-control-sm" id="user_password" name="user_password">
+                        <small class="error-message text-danger"></small>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_phone" class="form-label small">Điện thoại</label>
                         <input type="text" class="form-control form-control-sm" id="user_phone" name="user_phone">
+                        <small class="error-message text-danger"></small>
                       </div>
                     </div>
                 </div><!-- card-body -->
@@ -75,5 +79,34 @@
       </div>
     </section>
 
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('admin.script'); ?>
+  <script>
+      Validator({
+          form: '#admin-user-add',
+          rules: [
+              Validator.tbRequired({
+                  selector: '#user_name',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#user_email',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#user_password',
+                  submit: true
+              }),
+              Validator.tbRequired({
+                  selector: '#user_phone',
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+              document.getElementById("modal__loading").style.display = "block";
+              data.form.submit();
+          }
+      });
+  </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/user/add.blade.php ENDPATH**/ ?>

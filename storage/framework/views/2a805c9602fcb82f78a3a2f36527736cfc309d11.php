@@ -13,21 +13,21 @@
 
     <section class="section">
       <div class="row">
-
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
             
             <!-- Start raw -->
-            <form class="col-12" action="<?php echo e(route('admin.authorization.store')); ?>" method="POST">
+            <form class="col-12" action="<?php echo e(route('admin.authorization.store')); ?>" method="POST" id="admin-authorization-add">
               <?php echo csrf_field(); ?>
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
-                      <div class="col-md-6">
+                      <div class="col-md-6 validate">
                         <label for="user_group_name" class="form-label small">Tên</label>
                         <input type="text" class="form-control form-control-sm" id="user_group_name" name="user_group_name">
+                        <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-6">
                         <label for="user_group_description" class="form-label small">Mô tả</label>
@@ -75,9 +75,26 @@
 
           </div>
         </div><!-- End Left side columns -->
-
       </div>
     </section>
-
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('admin.script'); ?>
+  <script>
+      Validator({
+          form: '#admin-authorization-add',
+          rules: [
+              Validator.tbRequired({
+                  selector: '#user_group_name',
+                  submit: true
+              })
+          ],
+          onSubmit: (data) => {
+              document.getElementById("modal__loading").style.display = "block";
+              data.form.submit();
+          }
+      });
+  </script>
+<?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\laravel8valuland\resources\views/admin/authorization/add.blade.php ENDPATH**/ ?>

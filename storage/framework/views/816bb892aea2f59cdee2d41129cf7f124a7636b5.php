@@ -49,8 +49,12 @@
                         <input type="text" class="form-control form-control-sm" id="rent_broker" name="rent_broker" value="<?php echo e($rent->rent_broker); ?>">
                       </div>
                       <div class="col-md-4">
-                        <label for="rent_legal_person" class="form-label-sm">Người pháp lý</label>
-                        <input type="text" class="form-control form-control-sm" id="rent_legal_person" name="rent_legal_person" value="<?php echo e($rent->rent_legal_person); ?>">
+                        <label for="rent_start_date" class="form-label-sm">Ngày bắt đầu</label>
+                        <input type="text" class="form-control form-control-sm" id="rent_start_date" name="rent_start_date" value="<?php echo e($rent->rent_start_date); ?>">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="rent_end_date" class="form-label-sm">Ngày kết thúc</label>
+                        <input type="text" class="form-control form-control-sm" id="rent_end_date" name="rent_end_date" value="<?php echo e($rent->rent_end_date); ?>">
                       </div>
                       <div class="col-md-4">
                         <label for="rent_contract_img" class="form-label-sm">Ảnh hợp đồng</label>

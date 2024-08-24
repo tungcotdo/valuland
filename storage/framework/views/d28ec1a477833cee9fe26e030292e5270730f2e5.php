@@ -4,7 +4,7 @@
         <h1>Danh sách bán tinh</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>">Trang chủ</a></li>
             <li class="breadcrumb-item active">Danh sách bán tinh</li>
           </ol>
         </nav>

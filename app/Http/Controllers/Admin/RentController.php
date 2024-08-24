@@ -17,6 +17,7 @@ class RentController extends Controller
 {
 
     public function raw(Request $request){
+        $this->_authorization(9);
         $query = DB::table('rent')->where('rent_status', 1);
 
         if( !empty( $request->code ) ){
@@ -39,6 +40,7 @@ class RentController extends Controller
         return view('admin.rent.raw', ['rent_raws' => $rent_raws]);
     }
     public function select(Request $request){
+        $this->_authorization(10);
         $query = DB::table('rent')->where('rent_status', 2);
 
         if( !empty( $request->code ) ){
@@ -61,6 +63,7 @@ class RentController extends Controller
         return view('admin.rent.select', ['rent_selects' => $rent_selects]);
     }
     public function transaction(Request $request){
+        $this->_authorization(11);
         $query = DB::table('rent')->where('rent_status', 3);
 
         if( !empty( $request->code ) ){
@@ -84,11 +87,13 @@ class RentController extends Controller
     }
 
     public function transactionEdit(Request $request){
+        $this->_authorization(22);
         $rent = DB::table('rent')->where('rent_id', $request->rent_id)->first();
         return view('admin.rent.edit-transaction', ['rent' => $rent, 'house' => new House]);
     }
 
     public function transactionUpdate(Request $request){
+        $this->_authorization(22);
         try{
             $file = $request->file('rent_contract_img');
             $rent_contract_img = $request->rent_contract_img_text;
@@ -110,6 +115,8 @@ class RentController extends Controller
                 'rent_deposit' => $request->rent_deposit,
                 'rent_deposit_date' => $request->rent_deposit_date,
                 'rent_contract_date' => $request->rent_contract_date,
+                'rent_start_date' => $request->rent_start_date,
+                'rent_end_date' => $request->rent_end_date,
                 'rent_broker' => $request->rent_broker,
                 'rent_legal_person' => $request->rent_legal_person,
                 'rent_contract_img' => $rent_contract_img,
@@ -136,11 +143,12 @@ class RentController extends Controller
     public function store(Request $request){
     }
     public function edit(Request $request){
+        $this->_authorization(22);
         $rent = DB::table('rent')->where('rent_id', $request->rent_id)->first();
         return view('admin.rent.edit', ['rent' => $rent, 'house' => new House]);
     }
     public function update(Request $request){
-
+        $this->_authorization(22);
         //Required fields to select list
         $flag = array_filter([
             'code' => $request->code,
@@ -187,10 +195,12 @@ class RentController extends Controller
         return redirect()->back()->with('success', 'Cập nhật dữ liệu danh sách bán thành công!');
     }
     public function delete(Request $request){
+        $this->_authorization(23);
         DB::table('rent')->where('rent_id',$request->rent_id)->delete();
         return redirect()->back()->with('success', 'Xoá dữ liệu thành công!'); 
     }
     public function status(Request $request){
+        $this->_authorization(22);
         DB::table('rent')->where('rent_id', $request->rent_id)->update([
             'rent_status' => $request->rent_status
         ]);

@@ -96,6 +96,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
         Route::get('add', ['as' => 'admin.notification.add', 'uses' => 'Admin\NotificationController@add']);
         Route::post('store', ['as' => 'admin.notification.store', 'uses' => 'Admin\NotificationController@store']);
         Route::get('edit/{notification_id}', ['as' => 'admin.notification.edit', 'uses' => 'Admin\NotificationController@edit']);
+        Route::get('view/{notification_id}', ['as' => 'admin.notification.view', 'uses' => 'Admin\NotificationController@view']);
         Route::post('update/{notification_id}', ['as' => 'admin.notification.update', 'uses' => 'Admin\NotificationController@update']);
         Route::get('delete/{notification_id}', ['as' => 'admin.notification.delete', 'uses' => 'Admin\NotificationController@delete']);
     });
