@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="<?php echo e(asset('admin/img/favicon.png')); ?>" rel="icon">
-  <link href="<?php echo e(asset('admin/img/apple-touch-icon.png')); ?>" rel="apple-touch-icon">
+  <link href="<?php echo e(asset('admin/img/valuland-favicon.png')); ?>" rel="icon">
+  <link href="<?php echo e(asset('admin/img/valuland-favicon.png')); ?>" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -32,8 +32,8 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center text-center">
-                  <img width="100" src="<?php echo e(asset('admin/img/Valuland-Logo.png')); ?>" alt="">
+                <a href="#" class="logo d-flex align-items-center text-center">
+                  <img width="100" src="<?php echo e(asset('admin/img/valuland-Logo.png')); ?>" alt="">
                 </a>
               </div><!-- End Logo -->
 

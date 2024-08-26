@@ -19,7 +19,7 @@
                             <div class="col-xxl-3 col-md-3 mb-3 mb-md-0">
                                 <div class="card info-card sales-card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Số căn đang bán</h5>
+                                        <h5 class="card-title">Căn đang bán</h5>
                                         <div class="d-flex align-items-center">
                                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                                 <i class="bi bi-box-arrow-up"></i>
@@ -37,7 +37,7 @@
                                 <div class="card info-card sales-card">
 
                                     <div class="card-body">
-                                    <h5 class="card-title">Số căn cho thuê</h5>
+                                    <h5 class="card-title">Căn cho thuê</h5>
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -55,9 +55,8 @@
                             <!-- Sales Card -->
                             <div class="col-xxl-3 col-md-3 mb-3 mb-md-0">
                                 <div class="card info-card sales-card">
-
                                     <div class="card-body">
-                                    <h5 class="card-title">Số căn giao dịch</h5>
+                                    <h5 class="card-title">Căn giao dịch</h5>
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -105,10 +104,10 @@
                                     <div class="card-body">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="sale-raw-tab" data-bs-toggle="tab" data-bs-target="#sale-raw" type="button" role="tab" aria-controls="sale-raw" aria-selected="true">Dữ liệu bán sơ</button>
+                                        <button class="nav-link active" id="sale-raw-tab" data-bs-toggle="tab" data-bs-target="#sale-raw" type="button" role="tab" aria-controls="sale-raw" aria-selected="true">Bán sơ</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="sale-select-tab" data-bs-toggle="tab" data-bs-target="#sale-select" type="button" role="tab" aria-controls="sale-select" aria-selected="false">Dữ liệu bán tinh</button>
+                                        <button class="nav-link" id="sale-select-tab" data-bs-toggle="tab" data-bs-target="#sale-select" type="button" role="tab" aria-controls="sale-select" aria-selected="false">Bán tinh</button>
                                         </li>
                                     </ul>
                                     <div class="tab-content pt-3" id="myTabContent">
@@ -183,10 +182,10 @@
                                     <div class="card-body">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="rent-raw-tab" data-bs-toggle="tab" data-bs-target="#rent-raw" type="button" role="tab" aria-controls="rent-raw" aria-selected="true">Dữ liệu thuê sơ</button>
+                                        <button class="nav-link active" id="rent-raw-tab" data-bs-toggle="tab" data-bs-target="#rent-raw" type="button" role="tab" aria-controls="rent-raw" aria-selected="true">Thuê sơ</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="rent-select-tab" data-bs-toggle="tab" data-bs-target="#rent-select" type="button" role="tab" aria-controls="rent-select" aria-selected="false">Dữ liệu thuê tinh</button>
+                                        <button class="nav-link" id="rent-select-tab" data-bs-toggle="tab" data-bs-target="#rent-select" type="button" role="tab" aria-controls="rent-select" aria-selected="false">Thuê tinh</button>
                                         </li>
                                     </ul>
                                     <div class="tab-content pt-3" id="myTabContent">

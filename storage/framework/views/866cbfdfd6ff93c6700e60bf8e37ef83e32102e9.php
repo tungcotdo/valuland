@@ -26,29 +26,15 @@
                 <div class="card-body">
                     <h5 class="card-title py-0">Thông tin chung</h5>
                     <div class="row g-3">
-                      <div class="col-md-4 validate">
-                        <label for="code" class="form-label-sm">Mã căn<small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control form-control-sm" id="code" name="code" value="<?php echo e($sale->code); ?>">
-                        <small class="error-message text-danger"></small>
-                      </div>
-                      <div class="col-md-4 validate">
-                        <label for="owner_name" class="form-label-sm">Tên chủ hộ <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="<?php echo e($sale->owner_name); ?>">
-                        <small class="error-message text-danger"></small>
-                      </div>
-                      <div class="col-md-4 validate">
-                        <label for="owner_email" class="form-label-sm">Email chủ hộ (Ngăn cách bằng dấu ;)<small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email" value="<?php echo e($sale->owner_email); ?>">
-                        <small class="error-message text-danger"></small>
-                      </div>
-                      <div class="col-md-4 validate">
-                        <label for="owner_phone" class="form-label-sm">Điện thoại chủ hộ <small class="text-danger"> *</small></label>
-                        <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="<?php echo e($sale->owner_phone); ?>">
-                        <small class="error-message text-danger"></small>
-                      </div>
                       <div class="col-md-4">
                         <label for="sale_subdivision" class="form-label-sm">Phân khu</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_subdivision" name="sale_subdivision" value="<?php echo e($sale->sale_subdivision); ?>">
+                        <select class="form-control form-control-sm" id="sale_subdivision" name="sale_subdivision">
+                          <?php if( !empty( $house->_SUBDIVISION ) ): ?>
+                            <?php $__currentLoopData = $house->_SUBDIVISION; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($value); ?>" <?php echo e($value == $sale->sale_subdivision ? 'selected' : ''); ?>><?php echo e($text); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
+                        </select>
                       </div>
                       <div class="col-md-4">
                         <label for="sale_building" class="form-label-sm">Tòa</label>
@@ -58,12 +44,32 @@
                         <label for="sale_floor" class="form-label-sm">Tầng</label>
                         <input type="text" class="form-control form-control-sm" id="sale_floor" name="sale_floor" value="<?php echo e($sale->sale_floor); ?>">
                       </div>
+                      <div class="col-md-4 validate">
+                        <label for="code" class="form-label-sm">Mã căn<small class="text-danger"> *</small></label>
+                        <input type="text" class="form-control form-control-sm" id="code" name="code" value="<?php echo e($sale->code); ?>">
+                        <small class="error-message text-danger"></small>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_navigable_area" class="form-label-sm">DT thông thủy</label>
+                        <input type="text" class="form-control form-control-sm" id="sale_navigable_area" name="sale_navigable_area" value="<?php echo e($sale->sale_navigable_area); ?>">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="sale_room" class="form-label-sm">Phòng ngủ</label>
+                        <select class="form-control form-control-sm" id="sale_room" name="sale_room">
+                          <?php if( !empty( $house->_ROOM ) ): ?>
+                            <?php $__currentLoopData = $house->_ROOM; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option value="<?php echo e($value); ?>" <?php echo e($value == $sale->sale_room ? 'selected' : ''); ?>><?php echo e($text); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
+                        </select>
+                      </div>
+
                       <div class="col-md-4">
                         <label for="sale_style" class="form-label-sm">Loại căn hộ</label>
                         <select class="form-control form-control-sm" id="sale_style" name="sale_style">
                           <?php if( !empty( $house->_STYLE ) ): ?>
                             <?php $__currentLoopData = $house->_STYLE; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($value); ?>"><?php echo e($text); ?></option>
+                              <option value="<?php echo e($value); ?>" <?php echo e($value == $sale->sale_style ? 'selected' : ''); ?>><?php echo e($text); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                           <?php endif; ?>
                         </select>
@@ -73,18 +79,30 @@
                         <select class="form-control form-control-sm" id="sale_direction" name="sale_direction">
                           <?php if( !empty( $house->_DIRECTION ) ): ?>
                             <?php $__currentLoopData = $house->_DIRECTION; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($value); ?>"><?php echo e($text); ?></option>
+                              <option value="<?php echo e($value); ?>" <?php echo e($value == $sale->sale_direction ? 'selected' : ''); ?>><?php echo e($text); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                           <?php endif; ?>
                         </select>
                       </div>
                       <div class="col-md-4">
-                        <label for="sale_navigable_area" class="form-label-sm">DT thông thủy</label>
-                        <input type="text" class="form-control form-control-sm" id="sale_navigable_area" name="sale_navigable_area" value="<?php echo e($sale->sale_navigable_area); ?>">
-                      </div>
-                      <div class="col-md-4">
                         <label for="sale_price" class="form-label-sm">Giá bán</label>
                         <input type="text" class="form-control form-control-sm" id="sale_price" name="sale_price" value="<?php echo e($sale->sale_price); ?>">
+                      </div>
+
+                      <div class="col-md-4 validate">
+                        <label for="owner_name" class="form-label-sm">Tên chủ hộ <small class="text-danger"> *</small></label>
+                        <input type="text" class="form-control form-control-sm" id="owner_name" name="owner_name" value="<?php echo e($sale->owner_name); ?>">
+                        <small class="error-message text-danger"></small>
+                      </div>
+                      <!-- <div class="col-md-4 validate">
+                        <label for="owner_email" class="form-label-sm">Email chủ hộ (Ngăn cách bằng dấu ;)<small class="text-danger"> *</small></label>
+                        <input type="text" class="form-control form-control-sm" id="owner_email" name="owner_email" value="<?php echo e($sale->owner_email); ?>">
+                        <small class="error-message text-danger"></small>
+                      </div> -->
+                      <div class="col-md-4 validate">
+                        <label for="owner_phone" class="form-label-sm">Điện thoại chủ hộ <small class="text-danger"> *</small></label>
+                        <input type="text" class="form-control form-control-sm" id="owner_phone" name="owner_phone" value="<?php echo e($sale->owner_phone); ?>">
+                        <small class="error-message text-danger"></small>
                       </div>
                       <div class="col-md-12">
                         <label for="sale_description" class="form-label-sm">Mô tả</label>
@@ -98,12 +116,28 @@
                 <div class="card-body">
                     <!-- Images -->
                     <div class="col-md-12">
-                      <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-plus-lg"></i> Thêm mới ảnh</a>
+                      <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#imgModal"><i class="bi bi-plus-lg"></i> Thêm mới ảnh</a>
                       <div class="row g-2" id="sale-img"></div>
                     </div>
                     <!-- End Images -->
                 </div> <!-- end card-body -->
               </div> <!-- end card -->
+
+              
+              <div class="card mt-3">
+                <div class="card-body">
+                  <a href="sale-add.html" class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#videoModal"><i class="bi bi-plus-lg"></i> Thêm mới video</a>
+                  <a href="sale-add.html" class="btn btn-sm btn-danger mb-3"><i class="bi bi-trash"></i> Xóa video</a>
+                </div>
+                <video controls>
+                  <source src="https://youtu.be/TWgDHo92gP8?si=5_DA6US2zL4n5aXk" type="video/mp4">
+                  <source src="https://youtu.be/TWgDHo92gP8?si=5_DA6US2zL4n5aXk" type="video/ogg">
+                  Your browser does not support HTML video.
+                </video>
+              </div>
+
+
+            </div> <!-- end card -->
 
               <div class="text-center my-5">
                 <button type="submit" class="btn btn-primary me-3">Lưu dữ liệu</button>
@@ -117,7 +151,7 @@
     </section>
 
     <!-- Upload IMG Modal -->
-    <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal fade" id="imgModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -131,6 +165,33 @@
                 <div class="row">
                     <div class="col-auto validate">
                         <input class="form-control" type="file" id="sale_img_input" name="files[]" multiple>
+                        <small class="error-message text-danger"></small>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" id="house-image-save">Lưu</button>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Upload IMG Modal-->
+
+    <!-- Upload VIDEO Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Tải video căn hộ</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-modal-close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="<?php echo e(route('admin.media.sale-upload', $sale->sale_id)); ?>" id="admin-sale-uploadvideo" method="POST" enctype="multipart/form-data">
+                <input type="hidden" id="sale-loadvideo-url" value="<?php echo e(route('admin.media.sale-load', $sale->sale_id)); ?>">
+                <?php echo csrf_field(); ?>
+                <div class="row">
+                    <div class="col-auto validate">
+                        <input class="form-control" type="file" id="sale_video_input" name="files[]" multiple>
                         <small class="error-message text-danger"></small>
                     </div>
                     <div class="col-auto">

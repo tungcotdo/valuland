@@ -28,7 +28,18 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']], function () {
     });
     
     Route::prefix('media')->group(function () {
-        Route::post('sale-load/{sale_id}', ['as' => 'admin.media.sale-load', 'uses' => 'Admin\MediaController@saleLoad']);
+        Route::prefix('saleimg')->group(function () {
+            Route::post('render/{sale_id}', ['as' => 'admin.media.saleimg.render', 'uses' => 'Admin\SaleimgController@render']);
+            Route::post('upload/{sale_id}', ['as' => 'admin.media.saleimg.upload', 'uses' => 'Admin\SaleimgController@upload']);
+            Route::post('delete/{sale_id}', ['as' => 'admin.media.saleimg.delete', 'uses' => 'Admin\SaleimgController@delete']);
+        });
+
+        Route::prefix('salevideo')->group(function () {
+            Route::post('render/{sale_id}', ['as' => 'admin.media.salevideo.render', 'uses' => 'Admin\MediaController@saleLoad']);
+            Route::post('upload/{sale_id}', ['as' => 'admin.media.salevideo.render', 'uses' => 'Admin\MediaController@saleLoad']);
+            Route::post('delete/{sale_id}', ['as' => 'admin.media.salevideo.render', 'uses' => 'Admin\MediaController@saleLoad']);
+        });
+
         Route::post('sale-upload/{sale_id}', ['as' => 'admin.media.sale-upload', 'uses' => 'Admin\MediaController@saleUpload']);
         Route::post('sale-delete/{sale_img_id}', ['as' => 'admin.media.sale-delete', 'uses' => 'Admin\MediaController@saleDelete']);
         
